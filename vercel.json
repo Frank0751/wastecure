@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "installCommand": "bun install",
+  "functions": {
+    "src/app/api/chat-stream/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/chat/route.ts": {
+      "maxDuration": 30
+    }
+  }
+}

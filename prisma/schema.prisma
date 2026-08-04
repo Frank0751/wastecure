@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  phone     String?
+  organisation String?
+  service   String?
+  location  String?
+  message   String
+  status    String   @default("new") // new | read | responded | archived
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  source    String   @default("website")
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PickupRequest {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  address     String
+  location    String
+  wasteType   String   // plastic | mixed | organic | general
+  volume      String?  // small | medium | large
+  preferredDate String?
+  notes       String?
+  status      String   @default("requested") // requested | scheduled | completed | cancelled
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String   // user | assistant
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model Volunteer {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  location  String?
+  role      String   // Volunteer at clean-ups | Host a collection point | Invite us to my school / church | Partner organisation | Other
+  message   String?
+  status    String   @default("signed-up") // signed-up | contacted | active | inactive
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String   // contact | pickup | volunteer | newsletter
+  refId     String   // the related record id
+  to        String   // recipient email
+  subject   String
+  body      String
+  status    String   @default("pending") // pending | sent | failed
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

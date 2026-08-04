@@ -1,0 +1,88 @@
+import { db } from "@/lib/db";
+
+const STAFF_EMAIL = "edmond.amankwaah@gmail.com";
+
+type NotifType = "contact" | "pickup" | "volunteer" | "newsletter";
+
+/**
+ * Creates a notification record in the database (fire-and-forget).
+ * In production, this would also trigger an SMTP send via a provider
+ * (Resend, SendGrid, etc.). Here we persist it so staff can view it
+ * in the admin dashboard's Notifications tab.
+ */
+export function notifyStaff(type: NotifType, record: Record<string, unknown>) {
+  const id = (record.id as string) || `unknown-${Date.now()}`;
+  const name = (record.name as string) || "a visitor";
+  const phone = (record.phone as string) || "-";
+  const email = (record.email as string) || "-";
+
+  let subject = "";
+  let body = "";
+
+  if (type === "contact") {
+    subject = `New enquiry from ${name}`;
+    body = [
+      `You have received a new enquiry via the WasteCure website.`,
+      ``,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Organisation: ${record.organisation || "-"}`,
+      `Service: ${record.service || "-"}`,
+      `Location: ${record.location || "-"}`,
+      ``,
+      `Message:`,
+      (record.message as string) || "-",
+    ].join("\n");
+  } else if (type === "pickup") {
+    subject = `New pickup request from ${name}`;
+    body = [
+      `You have received a new pickup request.`,
+      ``,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      `Address: ${record.address || "-"}`,
+      `Location: ${record.location || "-"}`,
+      `Waste type: ${record.wasteType || "-"}`,
+      `Volume: ${record.volume || "-"}`,
+      `Preferred date: ${record.preferredDate || "-"}`,
+      `Notes: ${record.notes || "-"}`,
+    ].join("\n");
+  } else if (type === "volunteer") {
+    subject = `New volunteer signup: ${name}`;
+    body = [
+      `A new volunteer has signed up!`,
+      ``,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      `Location: ${record.location || "-"}`,
+      `Role: ${record.role || "-"}`,
+      `Message: ${record.message || "-"}`,
+    ].join("\n");
+  } else {
+    subject = `New newsletter subscriber`;
+    body = [
+      `A new subscriber joined the WasteCure newsletter.`,
+      ``,
+      `Email: ${email}`,
+      `Name: ${name === "a visitor" ? "-" : name}`,
+    ].join("\n");
+  }
+
+  // Persist to DB using raw SQL (fire-and-forget, never blocks the main
+  // request). Raw SQL is used for reliability because the dev server may
+  // cache an old Prisma client that doesn't know the Notification model.
+  // Note: "to" and "read" are quoted because they are reserved in SQLite.
+  try {
+    const notifId = `n-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    const now = new Date().toISOString();
+    db.$executeRaw`INSERT INTO Notification (id, type, refId, "to", subject, body, status, "read", createdAt) VALUES (${notifId}, ${type}, ${id}, ${STAFF_EMAIL}, ${subject}, ${body}, 'pending', 0, ${now})`.catch(
+      (e: unknown) =>
+        console.error("[notify] insert failed:", (e as Error).message)
+    );
+  } catch {
+    // Silent
+  }
+}

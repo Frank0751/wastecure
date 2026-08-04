@@ -1,0 +1,75 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+type PageHeaderProps = {
+  title: string;
+  subtitle?: string;
+  image?: string;
+  align?: "left" | "center";
+  className?: string;
+};
+
+/**
+ * Reusable page header used at the top of every internal page.
+ * Full-width background image with overlay + heading + optional subtitle.
+ * No kicker label, no icon badge.
+ */
+export function PageHeader({
+  title,
+  subtitle,
+  image,
+  align = "center",
+  className,
+}: PageHeaderProps) {
+  const hasImage = Boolean(image);
+  return (
+    <section
+      className={cn(
+        "relative isolate overflow-hidden",
+        hasImage ? "text-white" : "bg-gradient-to-br from-forest-700 via-forest-800 to-forest-900 text-white",
+        "py-20 md:py-28",
+        className
+      )}
+    >
+      {hasImage && (
+        <>
+          <img
+            src={image}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 -z-10 size-full object-cover"
+            fetchPriority="high"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-forest-900/92 via-forest-800/85 to-forest-900/92" />
+          <div className="absolute inset-0 -z-10 bg-grid-pattern opacity-20" />
+        </>
+      )}
+      {!hasImage && (
+        <div className="absolute inset-0 -z-10 bg-grid-pattern opacity-20" aria-hidden />
+      )}
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className={cn(
+            "max-w-3xl",
+            align === "center" ? "mx-auto text-center" : "text-left"
+          )}
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="mt-5 text-base md:text-lg text-white/85 leading-relaxed text-balance">
+              {subtitle}
+            </p>
+          )}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
