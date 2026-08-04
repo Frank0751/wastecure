@@ -74,8 +74,8 @@ export function Header() {
             <span className="text-lg md:text-xl font-bold tracking-tight text-foreground">
               Waste<span className="text-primary">Cure</span>
             </span>
-            <span className="hidden sm:block text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Curing Waste. Healing the Planet.
+            <span className="hidden sm:block text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-muted-foreground leading-tight">
+              Curing Waste.<br />Healing the Planet.
             </span>
           </div>
         </Link>
