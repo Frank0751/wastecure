@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
+import { ArrowRight, ChevronDown, MapPin, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IMAGES, SITE } from "@/lib/site-data";
 import { useLang } from "@/lib/i18n";
@@ -34,7 +34,7 @@ export function Hero() {
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-forest-900/95 via-forest-800/85 to-forest-900/95" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(76,175,80,0.18),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(76,175,80,0.18),transparent_60%)]" />
         <div className="absolute inset-0 bg-grid-pattern opacity-30" />
       </div>
 
@@ -55,8 +55,7 @@ export function Hero() {
       {/* Animated particle background */}
       <ParticleBackground count={18} />
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-        <div className="max-w-4xl">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
@@ -75,7 +74,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 max-w-2xl text-base md:text-lg lg:text-xl text-forest-100/90 leading-relaxed"
+            className="mt-6 max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-forest-100/90 leading-relaxed"
           >
             WasteCure is reducing plastic waste in the{" "}
             <span className="text-white font-semibold">
@@ -91,7 +90,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-8 flex flex-col sm:flex-row gap-3"
+            className="mt-8 flex flex-col sm:flex-row gap-3 justify-center"
           >
             <Button asChild size="lg" className="group">
               <Link href="/services">
@@ -114,7 +113,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.45 }}
-            className="mt-12 flex flex-wrap gap-3"
+            className="mt-12 flex flex-wrap gap-3 justify-center"
           >
             {[
               { label: t("hero.founded"), value: "2021" },
@@ -134,7 +133,35 @@ export function Hero() {
               </div>
             ))}
           </motion.div>
-        </div>
+
+          {/* Social icons */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="mt-8 flex items-center justify-center gap-3"
+          >
+            <a
+              href={SITE.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WasteCure on Instagram"
+              className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-forest-100/80 backdrop-blur-sm transition hover:border-leaf-400/50 hover:bg-white/10 hover:text-white"
+            >
+              <Instagram className="size-4" />
+              Instagram
+            </a>
+            <a
+              href={SITE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WasteCure on LinkedIn"
+              className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-forest-100/80 backdrop-blur-sm transition hover:border-leaf-400/50 hover:bg-white/10 hover:text-white"
+            >
+              <Linkedin className="size-4" />
+              LinkedIn
+            </a>
+          </motion.div>
       </div>
 
       {/* Marquee strip */}

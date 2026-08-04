@@ -56,15 +56,15 @@ export function PageHeader({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className={cn(
-            "max-w-3xl",
+            "max-w-5xl",
             align === "center" ? "mx-auto text-center" : "text-left"
           )}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-balance leading-none">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-5 text-base md:text-lg text-white/85 leading-relaxed text-balance">
+            <p className="mt-6 text-lg md:text-xl lg:text-2xl text-white/85 leading-relaxed text-balance">
               {subtitle}
             </p>
           )}
