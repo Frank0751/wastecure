@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden min-h-[92vh] md:min-h-screen flex items-center"
+      className="relative isolate overflow-hidden min-h-screen flex items-center"
     >
       {/* Background image with overlay */}
       <div className="absolute inset-0 -z-10">

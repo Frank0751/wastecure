@@ -27,9 +27,9 @@ export function PageHeader({
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden",
+        "relative isolate overflow-hidden flex flex-col justify-center min-h-screen",
         hasImage ? "text-white" : "bg-gradient-to-br from-forest-700 via-forest-800 to-forest-900 text-white",
-        "py-20 md:py-28",
+        "pt-24 md:pt-28 pb-16 md:pb-20",
         className
       )}
     >
@@ -50,7 +50,7 @@ export function PageHeader({
         <div className="absolute inset-0 -z-10 bg-grid-pattern opacity-20" aria-hidden />
       )}
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
