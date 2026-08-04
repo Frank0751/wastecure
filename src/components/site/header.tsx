@@ -82,7 +82,7 @@ export function Header() {
 
         {/* Desktop nav with dropdowns */}
         <nav
-          className="hidden lg:flex items-center gap-0.5"
+          className="hidden xl:flex items-center gap-0.5"
           aria-label="Primary navigation"
         >
           {NAV_STRUCTURE.map((item) => (
@@ -113,7 +113,7 @@ export function Header() {
 
           <Button
             size="sm"
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex whitespace-nowrap"
             onClick={openPickupWizard}
           >
             Request Pickup
@@ -125,7 +125,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden"
+                className="xl:hidden"
                 aria-label="Open menu"
               >
                 <Menu className="size-5" />
@@ -289,7 +289,7 @@ function DesktopNavItem({ item, active }: { item: NavItem; active: boolean }) {
       <Link
         href={item.href}
         className={cn(
-          "relative px-3 py-2 text-sm font-medium rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+          "relative px-2.5 py-2 text-sm font-medium rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50 whitespace-nowrap",
           active
             ? "text-primary"
             : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
@@ -320,7 +320,7 @@ function DesktopNavItem({ item, active }: { item: NavItem; active: boolean }) {
       <Link
         href={item.href}
         className={cn(
-          "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+          "flex items-center gap-1 px-2.5 py-2 text-sm font-medium rounded-md transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50 whitespace-nowrap",
           active
             ? "text-primary"
             : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
