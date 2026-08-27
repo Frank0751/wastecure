@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, MapPin, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { IMAGES, SITE } from "@/lib/site-data";
+import { REAL_PHOTOS, SITE } from "@/lib/site-data";
 import { useLang } from "@/lib/i18n";
 import { ParticleBackground } from "@/components/site/particle-background";
 
@@ -28,8 +28,8 @@ export function Hero() {
       {/* Background image with overlay */}
       <div className="absolute inset-0 -z-10">
         <img
-          src={IMAGES.collection[0]}
-          alt="Plastic waste collection site in Ghana"
+          src={REAL_PHOTOS.duskSweep}
+          alt="WasteCure field team cleaning a road in the Ashanti Region"
           className="size-full object-cover"
           fetchPriority="high"
         />
@@ -76,13 +76,13 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-forest-100/90 leading-relaxed"
           >
-            WasteCure is reducing plastic waste in the{" "}
+            WasteCure is reducing waste pollution in the{" "}
             <span className="text-white font-semibold">
-              Kwabre East Municipality
+              Ashanti Region
             </span>{" "}
-            by providing a designated land space for plastic collection,
-            responsible recycling, and community education - building a cleaner,
-            greener Ghana one kilogram at a time.
+            by providing advanced waste solutions for sustainable waste
+            management - building a cleaner, greener environment one
+            community at a time.
           </motion.p>
 
           {/* CTAs */}
@@ -117,7 +117,7 @@ export function Hero() {
           >
             {[
               { label: t("hero.founded"), value: "2021" },
-              { label: t("hero.serviceArea"), value: "Kwabre East" },
+              { label: t("hero.serviceArea"), value: "Ashanti Region" },
               { label: t("hero.coreServices"), value: "4 Lines" },
             ].map((chip) => (
               <div

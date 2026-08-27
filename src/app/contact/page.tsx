@@ -39,7 +39,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { PageHeader } from "@/components/site/page-header";
-import { SITE, IMAGES } from "@/lib/site-data";
+import { SITE, REAL_PHOTOS } from "@/lib/site-data";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Please enter your full name"),
@@ -85,14 +85,14 @@ const CONTACT_DETAILS = [
   {
     icon: Clock,
     label: "Hours",
-    value: "Mon - Sat: 7:30am - 6:00pm",
+    value: SITE.hours,
   },
 ];
 
 const SERVICE_OPTIONS = [
-  "Plastic Waste Collection",
+  "Waste Collection",
   "Recyclables Collection & Sorting",
-  "Composting & Organic Waste",
+  "Cleaning Services",
   "Waste Management Consultancy",
   "Community Engagement / Education",
   "Other",
@@ -183,7 +183,7 @@ export default function ContactPage() {
       <PageHeader
         title="Contact Us"
         subtitle="Request a pickup, ask about services, or partner with us. We respond within 1-2 business days."
-        image={IMAGES.ghana[2]}
+        image={REAL_PHOTOS.marketEngagement}
       />
 
       <section className="bg-background py-20 md:py-24">
@@ -203,7 +203,7 @@ export default function ContactPage() {
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Reach us through any of these channels - we&apos;re happy to
-                  help with collection, recycling, composting or consultancy.
+                  help with collection, recycling, cleaning or consultancy.
                 </p>
                 <ul className="mt-6 space-y-4">
                   {CONTACT_DETAILS.map((d) => {
@@ -397,8 +397,8 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-2xl border border-border bg-card">
                 <div className="aspect-[16/10] w-full">
                   <iframe
-                    title="WasteCure location - Kwabre East Municipality, Kumasi"
-                    src="https://www.google.com/maps?q=Kwabre+East+Municipality+Kumasi+Ashanti+Ghana&output=embed"
+                    title="WasteCure location - Aseda House, Adum, Kumasi"
+                    src="https://www.google.com/maps?q=Aseda+House+Adum+Kumasi+Ashanti+Ghana&output=embed"
                     className="size-full border-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

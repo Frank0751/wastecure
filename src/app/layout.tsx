@@ -27,24 +27,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wastecure.com"),
+  metadataBase: new URL("https://wastecure.org"),
   title: {
     default:
-      "WasteCure | Sustainable Waste Collection & Recycling in Ghana",
+      "WasteCure | Waste Management Specialists in Ghana",
     template: "%s | WasteCure",
   },
   description:
-    "WasteCure is a Ghanaian waste management and recycling company in Kwabre East Municipality, Kumasi. We provide plastic waste collection, recycling, community education, and waste management consultancy for a cleaner, greener future.",
+    "WasteCure is a Ghanaian waste management company based in Kumasi, serving the Ashanti Region. We provide waste collection, recyclables sorting, cleaning services, and waste management consultancy for a cleaner, greener future.",
   keywords: [
     "WasteCure",
     "waste management Ghana",
+    "waste management Ashanti Region",
     "plastic recycling Kumasi",
-    "Kwabre East Municipality",
+    "waste collection Kumasi",
+    "cleaning services Kumasi",
     "recycling Ghana",
     "waste collection",
     "sustainability Ghana",
     "environmental services",
-    "composting",
     "community cleanup",
   ],
   authors: [{ name: "WasteCure Limited" }],
@@ -56,10 +57,10 @@ export const metadata: Metadata = {
     apple: "/wastecure-logo.jpg",
   },
   openGraph: {
-    title: "WasteCure | Sustainable Waste Collection & Recycling in Ghana",
+    title: "WasteCure | Waste Management Specialists in Ghana",
     description:
-      "Reducing plastic waste in Ghana through responsible collection, recycling, and community education. Based in Kwabre East Municipality, Kumasi.",
-    url: "https://wastecure.com",
+      "Reducing waste pollution in the Ashanti Region through responsible collection, recycling, cleaning services and community education. Based in Kumasi.",
+    url: "https://wastecure.org",
     siteName: "WasteCure",
     type: "website",
     locale: "en_GH",
@@ -68,15 +69,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1344,
         height: 768,
-        alt: "WasteCure - Curing Waste. Healing the Planet.",
+        alt: "WasteCure - Waste Management Specialists",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "WasteCure | Sustainable Waste Collection & Recycling in Ghana",
+    title: "WasteCure | Waste Management Specialists in Ghana",
     description:
-      "Reducing plastic waste in Ghana through responsible collection, recycling, and community education.",
+      "Reducing waste pollution in the Ashanti Region through responsible collection, recycling, cleaning services and community education.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -90,7 +91,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://wastecure.com",
+    canonical: "https://wastecure.org",
   },
 };
 
@@ -98,28 +99,30 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://wastecure.com/#business",
+  "@id": "https://wastecure.org/#business",
   name: "WasteCure Limited Company",
   description:
-    "Ghanaian waste management and recycling company providing plastic waste collection, recycling, composting, and waste management consultancy in Kwabre East Municipality, Kumasi.",
-  url: "https://wastecure.com",
+    "Ghanaian waste management company providing waste collection, recyclables sorting, cleaning services, and waste management consultancy across the Ashanti Region.",
+  url: "https://wastecure.org",
   telephone: SITE.phoneIntl,
   email: SITE.email,
   foundingDate: "2021",
   areaServed: {
     "@type": "AdministrativeArea",
-    name: "Kwabre East Municipality, Ashanti Region, Ghana",
+    name: "Ashanti Region, Ghana",
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: "2nd Floor, Aseda House, Adum",
     addressLocality: "Kumasi",
     addressRegion: "Ashanti Region",
     addressCountry: "GH",
   },
+  openingHours: "Mo-Sa 08:00-17:00",
   knowsAbout: [
-    "Plastic waste collection",
-    "Recyclables collection",
-    "Composting",
+    "Waste collection",
+    "Recyclables collection and sorting",
+    "Cleaning services",
     "Waste management consultancy",
     "Community engagement and education",
   ],
@@ -130,10 +133,10 @@ const jsonLd = {
 const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://wastecure.com/#website",
-  url: "https://wastecure.com",
+  "@id": "https://wastecure.org/#website",
+  url: "https://wastecure.org",
   name: "WasteCure",
-  publisher: { "@id": "https://wastecure.com/#business" },
+  publisher: { "@id": "https://wastecure.org/#business" },
   inLanguage: "en-GH",
 };
 
@@ -146,31 +149,31 @@ const breadcrumbLd = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://wastecure.com/",
+      item: "https://wastecure.org/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "About",
-      item: "https://wastecure.com/about",
+      item: "https://wastecure.org/about",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Services",
-      item: "https://wastecure.com/services",
+      item: "https://wastecure.org/services",
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Sustainability",
-      item: "https://wastecure.com/sustainability",
+      item: "https://wastecure.org/sustainability",
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Contact",
-      item: "https://wastecure.com/contact",
+      item: "https://wastecure.org/contact",
     },
   ],
 };

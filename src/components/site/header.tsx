@@ -16,7 +16,6 @@ import {
 import { NAV_STRUCTURE, SITE } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/site/theme-toggle";
-import { LanguageToggle } from "@/components/site/language-toggle";
 import { useUIStore } from "@/lib/ui-store";
 
 type NavItem = (typeof NAV_STRUCTURE)[number];
@@ -75,7 +74,7 @@ export function Header() {
               Waste<span className="text-primary">Cure</span>
             </span>
             <span className="hidden sm:block text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-muted-foreground leading-tight">
-              Curing Waste.<br />Healing the Planet.
+              Waste Management Specialists
             </span>
           </div>
         </Link>
@@ -103,7 +102,6 @@ export function Header() {
             <Phone className="size-4" />
             {SITE.phone}
           </a>
-          <LanguageToggle />
           <ThemeToggle />
 
           <span
@@ -148,7 +146,7 @@ export function Header() {
                         Waste<span className="text-primary">Cure</span>
                       </span>
                       <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                        Healing the Planet
+                        Waste Management Specialists
                       </span>
                     </div>
                   </div>

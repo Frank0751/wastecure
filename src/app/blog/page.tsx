@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight, Newspaper } from "lucide-react";
 import { ARTICLES, type Article } from "@/lib/articles";
 import { PageHeader } from "@/components/site/page-header";
-import { IMAGES } from "@/lib/site-data";
+import { REAL_PHOTOS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 const CATEGORIES: (Article["category"] | "All")[] = [
@@ -49,7 +49,7 @@ export default function BlogPage() {
       <PageHeader
         title="Blog"
         subtitle="Practical tips, community updates and education on waste and recycling in Ghana."
-        image={IMAGES.community[0]}
+        image={REAL_PHOTOS.groupPhoto2}
       />
 
       <section className="bg-background py-20 md:py-24">

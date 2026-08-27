@@ -5,7 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
 import { Reveal } from "@/components/site/reveal";
-import { IMAGES, MILESTONES, TEAM } from "@/lib/site-data";
+import { REAL_PHOTOS, MILESTONES, TEAM, VISION, MISSION, CORE_VALUES } from "@/lib/site-data";
+import { TeamAvatar } from "@/components/site/team-avatar";
 
 export const metadata = {
   title: "About Us",
@@ -19,7 +20,7 @@ export default function AboutPage() {
       <PageHeader
         title="Who We Are"
         subtitle="A Ghanaian waste management and recycling company working to reduce plastic waste, one community at a time."
-        image={IMAGES.community[0]}
+        image={REAL_PHOTOS.groupPhoto1}
       />
 
       {/* Story section */}
@@ -36,7 +37,7 @@ export default function AboutPage() {
                   WasteCure Limited Company was founded in{" "}
                   <span className="font-semibold text-foreground">2021</span> by{" "}
                   <span className="font-semibold text-foreground">
-                    Edmond Amankwaah
+                    George Adomako
                   </span>{" "}
                   in Kumasi, Ashanti Region. The idea was simple: give people in
                   the Kwabre East Municipality a responsible place to take
@@ -44,9 +45,10 @@ export default function AboutPage() {
                 </p>
                 <p>
                   What started as a small, mission-driven operation has grown
-                  into a community-rooted waste management and recycling company -
-                  combining collection, sorting, composting, education and
-                  consultancy to keep plastic out of Ghana&apos;s environment.
+                  into a community-rooted waste management company - combining
+                  collection, recycling, cleaning services, education and
+                  consultancy, now serving communities across the Ashanti
+                  Region.
                 </p>
               </div>
 
@@ -81,15 +83,15 @@ export default function AboutPage() {
                 <div className="space-y-4">
                   <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-md">
                     <img
-                      src={IMAGES.community[1]}
-                      alt="Community cleanup in Ghana"
+                      src={REAL_PHOTOS.wheelbarrowCollection}
+                      alt="WasteCure crew collecting waste near a market"
                       className="size-full object-cover"
                     />
                   </div>
                   <div className="relative aspect-square overflow-hidden rounded-2xl shadow-md">
                     <img
-                      src={IMAGES.ghana[1]}
-                      alt="Ghanaian community"
+                      src={REAL_PHOTOS.marketEngagement}
+                      alt="WasteCure field team engaging shopkeepers"
                       className="size-full object-cover"
                     />
                   </div>
@@ -97,15 +99,15 @@ export default function AboutPage() {
                 <div className="space-y-4 pt-8">
                   <div className="relative aspect-square overflow-hidden rounded-2xl shadow-md">
                     <img
-                      src={IMAGES.ghana[0]}
-                      alt="Kwabre East municipality"
+                      src={REAL_PHOTOS.skipLoading2}
+                      alt="WasteCure crew loading a district waste skip"
                       className="size-full object-cover"
                     />
                   </div>
                   <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-md">
                     <img
-                      src={IMAGES.community[2]}
-                      alt="Community engagement"
+                      src={REAL_PHOTOS.streetCrew}
+                      alt="WasteCure street clean-up crew"
                       className="size-full object-cover"
                     />
                   </div>
@@ -116,23 +118,58 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission statement */}
+      {/* Vision, Mission & Core Values */}
       <section className="relative bg-gradient-to-br from-forest-50/50 via-background to-leaf-50/30 py-20 md:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal y={24}>
             <div className="relative rounded-2xl border border-primary/15 bg-card p-8 md:p-12 shadow-sm">
               <Quote className="size-8 text-primary fill-primary/20" />
               <p className="mt-4 text-xl md:text-2xl font-medium text-foreground italic leading-relaxed text-balance">
-                &ldquo;Our mission is to reduce plastic waste in the environment by
-                providing a designated land space for plastic collection,
-                encouraging responsible disposal, and educating the next generation
-                of Ghanaians.&rdquo;
+                &ldquo;{MISSION}&rdquo;
               </p>
               <p className="mt-5 text-sm font-semibold text-primary">
                 WasteCure Mission Statement
               </p>
             </div>
           </Reveal>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <Reveal x={-24} delay={0.05}>
+              <Card className="h-full rounded-2xl border-border/60 bg-card">
+                <CardContent className="p-8">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">
+                    Our Vision
+                  </h3>
+                  <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                    {VISION}
+                  </p>
+                </CardContent>
+              </Card>
+            </Reveal>
+            <Reveal x={24} delay={0.1}>
+              <Card className="h-full rounded-2xl border-border/60 bg-card">
+                <CardContent className="p-8">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">
+                    Our Core Values - CURE
+                  </h3>
+                  <ul className="mt-3 space-y-2">
+                    {CORE_VALUES.map((v) => (
+                      <li key={v.letter} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                          {v.letter}
+                        </span>
+                        <span>
+                          <span className="font-medium text-foreground">{v.word}</span>
+                          {" — "}
+                          {v.description}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -215,7 +252,8 @@ export default function AboutPage() {
               <Reveal key={member.name} delay={i * 0.08}>
                 <Card className="h-full rounded-2xl border-border/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                   <CardContent className="flex h-full flex-col p-6">
-                    <h3 className="text-lg font-semibold text-foreground">
+                    <TeamAvatar name={member.name} image={member.image} />
+                    <h3 className="mt-4 text-lg font-semibold text-foreground">
                       {member.name}
                     </h3>
                     <p className="mt-1 text-sm font-medium text-primary">

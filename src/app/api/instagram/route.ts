@@ -40,7 +40,7 @@ const POSTS = [
   {
     id: "ig-5",
     image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/61ded60d9b3b.jpg",
-    caption: "Composting demo at the community centre. Turn food waste into garden gold!",
+    caption: "Cleaning day at a partner school. Tidy compounds, healthier classrooms!",
     likes: 142,
     comments: 11,
     date: "2024-05-20",

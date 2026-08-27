@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import { notifyStaff } from "@/lib/notify";
 
 const schema = z.object({
   email: z.string().email().max(160),
@@ -43,6 +44,8 @@ export async function POST(req: Request) {
         ...(name ? { name } : {}),
       },
     });
+
+    notifyStaff("newsletter", { id: subscriber.id, name: name ?? "", email });
 
     return NextResponse.json(
       {

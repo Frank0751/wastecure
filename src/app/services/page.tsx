@@ -5,13 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
 import { Reveal } from "@/components/site/reveal";
-import { SERVICES, PROCESS_STEPS, IMAGES } from "@/lib/site-data";
+import { SERVICES, PROCESS_STEPS, REAL_PHOTOS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Our Services",
   description:
-    "Plastic waste collection, recyclables sorting, composting and waste management consultancy from WasteCure in Kwabre East Municipality, Ghana.",
+    "Waste collection, recyclables sorting, cleaning services and waste management consultancy from WasteCure, serving the Ashanti Region, Ghana.",
 };
 
 // 7 plastic types for the waste guide (text labels only, no emojis)
@@ -80,8 +80,8 @@ export default function ServicesPage() {
     <>
       <PageHeader
         title="Our Services"
-        subtitle="From door-to-door collection to consultancy for institutions, our services are designed to divert plastic from landfill and support a circular economy in Ghana."
-        image={IMAGES.collection[1]}
+        subtitle="From waste collection and recycling to cleaning services and consultancy, our services are designed to keep communities clean and support a circular economy across the Ashanti Region."
+        image={REAL_PHOTOS.streetCrew}
       />
 
       {/* 4 service sections with alternating layout */}

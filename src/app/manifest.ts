@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "WasteCure | Sustainable Waste Collection & Recycling in Ghana",
+    name: "WasteCure | Waste Management Specialists in Ghana",
     short_name: "WasteCure",
     description:
-      "WasteCure is a Ghanaian waste management and recycling company in Kwabre East Municipality, Kumasi. Plastic waste collection, recycling, community education, and waste management consultancy.",
+      "WasteCure is a Ghanaian waste management company based in Kumasi, serving the Ashanti Region. Waste collection, recycling, cleaning services, and waste management consultancy.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

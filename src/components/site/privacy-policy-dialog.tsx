@@ -33,7 +33,7 @@ const SECTIONS = [
   {
     icon: Mail,
     title: "Your rights",
-    body: "You have the right to request access to, correction of, or deletion of your personal data. To exercise these rights, contact us at edmond.amankwaah@gmail.com or call 0540652347. We will respond within 30 days.",
+    body: "You have the right to request access to, correction of, or deletion of your personal data. To exercise these rights, contact us at wastecureltd@gmail.com or call 0540652347. We will respond within 30 days.",
   },
 ];
 
@@ -81,7 +81,7 @@ export function PrivacyPolicyDialog({
                 WasteCure Limited Company is committed to protecting your
                 privacy. This policy explains what data we collect, why we
                 collect it, and your rights regarding your personal information.
-                It applies to all visitors and users of wastecure.com.
+                It applies to all visitors and users of wastecure.org.
               </motion.p>
 
               {SECTIONS.map((section, i) => {
@@ -116,10 +116,10 @@ export function PrivacyPolicyDialog({
                 <p className="mt-1 text-sm text-muted-foreground">
                   Questions about your data? Email{" "}
                   <a
-                    href="mailto:edmond.amankwaah@gmail.com"
+                    href="mailto:wastecureltd@gmail.com"
                     className="font-medium text-primary hover:underline"
                   >
-                    edmond.amankwaah@gmail.com
+                    wastecureltd@gmail.com
                   </a>{" "}
                   or call{" "}
                   <a

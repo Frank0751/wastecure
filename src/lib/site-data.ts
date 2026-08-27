@@ -5,18 +5,58 @@
 export const SITE = {
   name: "WasteCure",
   legalName: "WasteCure Limited Company",
-  tagline: "Curing Waste. Healing the Planet.",
+  tagline: "Waste Management Specialists",
   founded: 2021,
   phone: "0540652347",
   phoneIntl: "+233540652347",
-  email: "edmond.amankwaah@gmail.com",
-  location: "Kwabre East Municipality, Kumasi, Ashanti Region, Ghana",
-  region: "Kumasi, Ashanti Region",
+  email: "wastecureltd@gmail.com",
+  location: "2nd Floor, Aseda House, Adum, Kumasi, Ashanti Region, Ghana",
+  region: "Ashanti Region, Ghana",
+  hours: "Mon - Sat: 8:00am - 5:00pm",
   industry: "Environmental Services",
   employees: "2-10",
   instagram: "https://www.instagram.com/wastecureghana/",
   linkedin: "https://www.linkedin.com/company/wastecure/",
   logo: "/wastecure-logo.jpg",
+} as const;
+
+export const VISION =
+  "We envision a healthy environment where waste is sustainably managed through circular economy principles.";
+
+export const MISSION =
+  "To provide advanced waste solutions with the required expertise, technical and managerial competencies, and resources to support our clients achieve their waste management goals.";
+
+export const CORE_VALUES = [
+  { letter: "C", word: "Commitment", description: "Commitment to sustainability" },
+  { letter: "U", word: "Unity", description: "Unity with communities" },
+  { letter: "R", word: "Reliability", description: "Reliability in service" },
+  { letter: "E", word: "Excellence", description: "Excellence" },
+] as const;
+
+// Real WasteCure field photography, supplied by the client and hosted on
+// their Cloudinary account (cloud name: dh1gxbiuw). f_auto,q_auto lets
+// Cloudinary serve the best format/quality automatically per browser.
+const CLOUDINARY_BASE = "https://res.cloudinary.com/dh1gxbiuw/image/upload/f_auto,q_auto";
+
+export const REAL_PHOTOS = {
+  // Street/market clean-up crew in WasteCure hi-vis vests, Ashanti Region
+  streetCrew: `${CLOUDINARY_BASE}/IMG-20260518-WA0016_a4gluv`,
+  // Crew loading collected waste into an Afigya Kwabre South District skip
+  skipLoading1: `${CLOUDINARY_BASE}/IMG-20260523-WA0007_hxzsns`,
+  skipLoading2: `${CLOUDINARY_BASE}/IMG_0176_dbwx9u`,
+  // Crew with wheelbarrow collecting waste near a market
+  wheelbarrowCollection: `${CLOUDINARY_BASE}/IMG-20260523-WA0012_izrdfz`,
+  // Cleaning crew of six with brooms at a site under construction
+  cleaningCrew: `${CLOUDINARY_BASE}/IMG_0201_f215xe`,
+  // Field team engaging shopkeepers during a collection round
+  marketEngagement: `${CLOUDINARY_BASE}/IMG-20260523-WA0015_cwmo1c`,
+  // Lone volunteer sweeping a road at dusk
+  duskSweep: `${CLOUDINARY_BASE}/IMG_0172_yhjxxb`,
+  // Community/volunteer briefing, WasteCure branded vest, Afigya Kwabre South
+  communityMeeting: `${CLOUDINARY_BASE}/IMG_5441_slb1g2`,
+  // Large group photo of volunteers and staff
+  groupPhoto1: `${CLOUDINARY_BASE}/IMG_5446_sivl7j`,
+  groupPhoto2: `${CLOUDINARY_BASE}/IMG_5447_jzjmz8`,
 } as const;
 
 // Real photographs from web sources (news sites, NGOs, stock libraries)
@@ -104,9 +144,9 @@ export const NAV_STRUCTURE = [
     label: "Services",
     href: "/services",
     children: [
-      { label: "Plastic Collection", href: "/services#collection" },
+      { label: "Waste Collection", href: "/services#collection" },
       { label: "Recycling & Sorting", href: "/services#recycling" },
-      { label: "Composting", href: "/services#composting" },
+      { label: "Cleaning Services", href: "/services#cleaning" },
       { label: "Consultancy", href: "/services#consultancy" },
       { label: "Waste Types Guide", href: "/services#waste-guide" },
     ],
@@ -128,17 +168,17 @@ export const NAV_STRUCTURE = [
 export const SERVICES = [
   {
     id: "collection",
-    title: "Plastic Waste Collection",
-    short: "Designated land space for responsible plastic disposal.",
+    title: "Waste Collection",
+    short: "Reliable waste collection for homes, businesses and institutions.",
     description:
-      "We provide a designated land space for plastic waste collection in the Kwabre East Municipality, encouraging households, businesses and institutions to dispose of plastic waste responsibly rather than dumping or burning it.",
+      "Our services include waste collection for households, businesses, schools and institutions across the Ashanti Region, encouraging responsible disposal rather than dumping or burning.",
     points: [
-      "Door-to-door and drop-off plastic collection",
+      "Door-to-door and drop-off waste collection",
       "Scheduled pickup for businesses and institutions",
-      "Sorted collection points across the municipality",
+      "Sorted collection points across our service area",
       "Affordable, reliable service for every household",
     ],
-    image: IMAGES.collection[0],
+    image: REAL_PHOTOS.skipLoading1,
   },
   {
     id: "recycling",
@@ -155,18 +195,18 @@ export const SERVICES = [
     image: IMAGES.bottles[0],
   },
   {
-    id: "composting",
-    title: "Composting and Organic Waste",
-    short: "Turning organic waste into rich compost for farms.",
+    id: "cleaning",
+    title: "Cleaning Services",
+    short: "Professional cleaning for schools, offices and residences.",
     description:
-      "Beyond plastics, WasteCure supports the diversion of organic waste from landfill through composting, producing nutrient-rich compost that returns value to local farms and gardens.",
+      "Our cleaning services include waste collection, cleaning services for schools, corporate office spaces, and residence and real estate facilities - keeping shared spaces clean and healthy.",
     points: [
-      "Organic waste diversion from landfill",
-      "Compost production for local agriculture",
-      "Training on home and community composting",
-      "Closed-loop nutrient recovery",
+      "Scheduled cleaning for schools and campuses",
+      "Corporate office space cleaning",
+      "Residential and real estate facility cleaning",
+      "Tailored plans for one-off or recurring jobs",
     ],
-    image: IMAGES.composting[0],
+    image: REAL_PHOTOS.cleaningCrew,
   },
   {
     id: "consultancy",
@@ -180,7 +220,7 @@ export const SERVICES = [
       "Policy and by-law advisory for assemblies",
       "Sustainability reporting and training",
     ],
-    image: IMAGES.ghana[0],
+    image: REAL_PHOTOS.communityMeeting,
   },
 ] as const;
 
@@ -212,27 +252,30 @@ export const PROCESS_STEPS = [
 ] as const;
 
 export const STATS = [
+  { value: 144, label: "Tricycle Loads Collected", suffix: "+" },
+  { value: 20, label: "Active Volunteers", suffix: "+" },
+  { value: 5, label: "Communities Reached", suffix: "+" },
   { value: 2021, label: "Founded" },
-  { value: 4, label: "Core Service Lines" },
-  { value: 100, label: "Plastic Diverted from Landfill (%)", suffix: "" },
-  { value: 1, label: "Municipality Served" },
 ] as const;
 
 export const TEAM = [
   {
+    name: "George Adomako",
+    role: "Founder & Executive Director",
+    bio: "Specialises in waste management and environmental sustainability, passionate about creating cleaner communities.",
+    image: "/images/team/george-adomako.jpg",
+  },
+  {
     name: "Edmond Amankwaah",
-    role: "Founder and Lead",
-    bio: "Edmond founded WasteCure in 2021 with a vision to reduce plastic waste in Ghanaian communities through responsible collection and recycling.",
+    role: "Technical & Operations Manager",
+    bio: "Specialises in operations, organisation and efficient waste management for sustainable communities.",
+    image: "/images/team/edmond-amankwaah.jpg",
   },
   {
-    name: "Operations Team",
-    role: "Collection and Sorting",
-    bio: "Our field team runs daily collection routes, manages the sorting site and engages directly with households and businesses.",
-  },
-  {
-    name: "Community Team",
-    role: "Engagement and Education",
-    bio: "Our community team leads school visits, clean-ups and public education to build long-term awareness around waste.",
+    name: "Maxwell Opoku Amoako",
+    role: "Sales, Marketing & Product Development",
+    bio: "Specialises in sales, marketing and product development, driving growth through innovative and sustainable solutions.",
+    image: "/images/team/maxwell-opoku-amoako.jpg",
   },
 ] as const;
 
@@ -241,7 +284,7 @@ export const MILESTONES = [
     year: "2021",
     title: "WasteCure is founded",
     description:
-      "Edmond Amankwaah establishes WasteCure in Kwabre East Municipality with a vision to reduce plastic waste through responsible collection and recycling.",
+      "George Adomako establishes WasteCure in Kwabre East Municipality with a vision to reduce plastic waste through responsible collection and recycling.",
   },
   {
     year: "2022",

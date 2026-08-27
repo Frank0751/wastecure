@@ -169,6 +169,9 @@ SQLite does not work on Vercel's serverless platform. Use Turso (SQLite-compatib
    | `DATABASE_AUTH_TOKEN` | (from Step 2.6, Turso token) |
    | `ZAI_API_KEY` | Your Z.AI API key |
    | `ZAI_BASE_URL` | `https://api.chatglm.cn` |
+   | `RESEND_API_KEY` | Your Resend API key (see Email Delivery below) |
+   | `EMAIL_FROM` | `WasteCure Website <noreply@wastecure.org>` |
+   | `EMAIL_TO` | `wastecureltd@gmail.com` |
 
 5. Click **Deploy**
 
@@ -176,12 +179,27 @@ SQLite does not work on Vercel's serverless platform. Use Turso (SQLite-compatib
 
 7. Your site is live at `https://wastecure-website.vercel.app` (or your custom domain)
 
-### Step 4: Custom Domain (optional)
+### Step 4: Custom Domain
 
 1. In Vercel dashboard, go to **Settings > Domains**
-2. Add your domain (e.g., `wastecure.com`)
+2. Add `wastecure.org` (the client's confirmed domain)
 3. Update DNS records as instructed by Vercel
-4. Update the `metadataBase` URL in `src/app/layout.tsx` to your domain
+4. The `metadataBase` URL in `src/app/layout.tsx` is already set to `https://wastecure.org`
+
+## Email Delivery (contact/pickup/volunteer/newsletter forms)
+
+Form submissions are always saved to the database and visible in the admin
+dashboard's Notifications tab. To also have them emailed to staff:
+
+1. Create a free account at https://resend.com
+2. Verify your sending domain (e.g. `wastecure.org`) under Resend's Domains
+   settings, or use `onboarding@resend.dev` for quick testing
+3. Create an API key in Resend and set `RESEND_API_KEY` in your environment
+4. Set `EMAIL_FROM` (must be on the verified domain) and `EMAIL_TO`
+   (where submissions should land - defaults to `STAFF_EMAIL`/`SITE.email`)
+
+Without `RESEND_API_KEY` set, the site still works fully - submissions just
+won't trigger an email, only the in-app notification.
 
 ## Environment Variables
 
@@ -191,6 +209,9 @@ SQLite does not work on Vercel's serverless platform. Use Turso (SQLite-compatib
 | `DATABASE_AUTH_TOKEN` | Prod only | Turso auth token (production only) |
 | `ZAI_API_KEY` | Yes | Z.AI API key for the chatbot |
 | `ZAI_BASE_URL` | No | Z.AI API base URL (defaults to https://api.chatglm.cn) |
+| `RESEND_API_KEY` | No | Enables real email delivery for form submissions (see above) |
+| `EMAIL_FROM` | No | Sender address for outgoing emails |
+| `EMAIL_TO` / `STAFF_EMAIL` | No | Where form notifications are sent (defaults to `SITE.email`) |
 
 ## Admin Dashboard
 

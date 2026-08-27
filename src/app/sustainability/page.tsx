@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
 import { Reveal } from "@/components/site/reveal";
 import { ImpactStats } from "@/components/site/impact-stats";
-import { IMAGES } from "@/lib/site-data";
+import { REAL_PHOTOS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
@@ -102,7 +102,7 @@ export default function SustainabilityPage() {
       <PageHeader
         title="Sustainability"
         subtitle="Plastic waste is one of the most visible environmental challenges in Ghana. WasteCure exists to change that, by reducing plastic at source, promoting recycling and keeping plastic out of landfills."
-        image={IMAGES.pollution[0]}
+        image={REAL_PHOTOS.skipLoading1}
       />
 
       {/* Environmental commitment section */}
@@ -139,8 +139,8 @@ export default function SustainabilityPage() {
               <div className="relative">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
                   <img
-                    src={IMAGES.bottles[0]}
-                    alt="Sorted plastic bottles ready for recycling"
+                    src={REAL_PHOTOS.wheelbarrowCollection}
+                    alt="WasteCure crew collecting waste for sorting"
                     className="size-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-900/40 to-transparent" />
@@ -148,9 +148,9 @@ export default function SustainabilityPage() {
                 <div className="absolute -bottom-5 left-6 right-6 rounded-xl border border-border bg-card p-4 shadow-lg">
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <div className="text-3xl font-bold text-primary">100%</div>
+                      <div className="text-3xl font-bold text-primary">144+</div>
                       <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                        Plastic diverted from landfill
+                        Tricycle loads collected
                       </div>
                     </div>
                     <div className="text-right">

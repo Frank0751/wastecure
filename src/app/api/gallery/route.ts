@@ -14,7 +14,7 @@ function build(): GalleryItem[] {
     { src: IMAGES.bottles[1], caption: "Plastic recovery at sorting site", category: "Recycling" },
     { src: IMAGES.community[1], caption: "Engaging local communities", category: "Community" },
     { src: IMAGES.collection[3], caption: "Aggregated plastic ready for off-takers", category: "Collection" },
-    { src: IMAGES.composting[0], caption: "Organic waste composting", category: "Composting" },
+    { src: IMAGES.worker[1], caption: "Cleaning service in progress", category: "Cleaning" },
     { src: IMAGES.education[2], caption: "Children learning about recycling", category: "Education" },
     { src: IMAGES.pollution[2], caption: "Why it matters: plastic pollution", category: "Impact" },
   ];

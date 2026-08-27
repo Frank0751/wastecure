@@ -13,9 +13,9 @@ import { ARTICLES } from "@/lib/articles";
 
 const OFFER_CARDS = [
   {
-    title: "Plastic Collection",
+    title: "Waste Collection",
     description:
-      "Door-to-door and drop-off plastic collection across Kwabre East Municipality.",
+      "Door-to-door and drop-off waste collection across the Ashanti Region.",
   },
   {
     title: "Recycling & Sorting",
@@ -23,9 +23,9 @@ const OFFER_CARDS = [
       "Sorted, baled and channelled to recycling off-takers - keeping plastic out of landfill.",
   },
   {
-    title: "Composting",
+    title: "Cleaning Services",
     description:
-      "Organic waste diverted from landfill and turned into nutrient-rich compost for farms.",
+      "Professional cleaning for schools, corporate offices, and residential facilities.",
   },
   {
     title: "Consultancy",
@@ -64,12 +64,12 @@ export default function Home() {
             className="mx-auto max-w-3xl text-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
-              A responsible place for plastic waste
+              Advanced waste solutions for cleaner communities
             </h2>
             <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-              We give households, businesses and institutions across Kwabre East
-              a real, sustainable option for plastic waste - backed by education
-              and a recycling-first approach.
+              We give households, businesses and institutions across the
+              Ashanti Region a real, sustainable option for waste management -
+              backed by education and a recycling-first approach.
             </p>
           </motion.div>
 
@@ -121,12 +121,12 @@ export default function Home() {
             className="mx-auto max-w-3xl text-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
-              Plastic collection, recycling & advisory
+              Collection, recycling, cleaning & advisory
             </h2>
             <p className="mt-4 text-base md:text-lg text-muted-foreground">
-              From door-to-door collection to consultancy for institutions, our
-              services are designed to divert plastic from landfill and support
-              a circular economy in Ghana.
+              From waste collection to consultancy for institutions, our
+              services are designed to keep communities clean and support a
+              circular economy in Ghana.
             </p>
           </motion.div>
 

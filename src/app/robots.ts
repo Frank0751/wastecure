@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://wastecure.com/sitemap.xml",
-    host: "https://wastecure.com",
+    sitemap: "https://wastecure.org/sitemap.xml",
+    host: "https://wastecure.org",
   };
 }

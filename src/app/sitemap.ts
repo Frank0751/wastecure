@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { ARTICLES } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://wastecure.com";
+  const base = "https://wastecure.org";
   const lastModified = new Date();
 
   const staticRoutes = [

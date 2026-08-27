@@ -1,6 +1,9 @@
 // Blog articles with authentic, well-referenced content.
 // Sources cited at the end of each article.
-// All images are real photographs from web sources.
+// All images are real photographs, either sourced from news/NGO/stock
+// libraries or WasteCure's own field photography (REAL_PHOTOS).
+
+import { REAL_PHOTOS } from "@/lib/site-data";
 
 export type Article = {
   slug: string;
@@ -209,7 +212,7 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Using your compost",
-        text: "Finished compost is dark, crumbly and smells like earth. Mix it into garden soil, use it as mulch around plants, or add it to pots. It improves soil structure, retains moisture, and reduces the need for chemical fertilisers. WasteCure offers composting training as part of our community education work.",
+        text: "Finished compost is dark, crumbly and smells like earth. Mix it into garden soil, use it as mulch around plants, or add it to pots. It improves soil structure, retains moisture, and reduces the need for chemical fertilisers. Composting is a simple habit every household can start today alongside sorting recyclables for collection.",
       },
     ],
     sources: [
@@ -413,6 +416,228 @@ export const ARTICLES: Article[] = [
         title: "Waste Framework Directive",
         url: "https://environment.ec.europa.eu/topics/waste-and-recycling/waste-framework-directive_en",
         publisher: "European Commission",
+      },
+    ],
+  },
+  {
+    slug: "wastecure-impact-144-tricycle-loads",
+    title: "144 tricycle loads and counting: WasteCure's real impact so far",
+    excerpt:
+      "Real numbers from real work on the ground - what WasteCure has collected, who it has reached, and what the figures mean for the Afigya Kwabre South district.",
+    category: "Community",
+    readTime: "4 min read",
+    date: "2025-11-10",
+    author: "WasteCure Team",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/fc2dd5487aff.jpg",
+    imageSource: "Atlas Volunteers",
+    body: [
+      {
+        text: "It is easy to talk about waste management in the abstract - tonnes, percentages, targets. We would rather show our actual numbers, however modest, because they represent real collection routes, real volunteers, and real communities choosing not to dump or burn their waste.",
+      },
+      {
+        heading: "144 tricycle loads and counting",
+        text: "To date, WasteCure has collected about 144 tricycle loads of waste from homes, businesses and public spaces - and the count keeps growing every week. Each load represents waste that did not end up blocking a drain, polluting a water source, or being burned in someone's backyard.",
+      },
+      {
+        heading: "One district, five communities, twenty volunteers",
+        text: "Our current coverage is the Afigya Kwabre South district, reaching about five communities along the Afrancho to Kodie stretch. Around 20 volunteers support our clean-up drives and community engagement work - a small but committed team that keeps growing as more people see the results.",
+      },
+      {
+        heading: "Why we publish these numbers",
+        text: "Generic claims do not build trust. We would rather tell you exactly where we are today - one district, a handful of communities, a small volunteer base - and let the numbers speak for themselves as we work to scale further across the Ashanti Region. If you want to see this work firsthand or add your name to the volunteer list, visit our Get Involved page.",
+      },
+    ],
+    sources: [
+      {
+        title: "Kwabre East Municipal Assembly",
+        url: "https://www.ghanadistricts.com/Home/District/125",
+        publisher: "Ghana Districts",
+      },
+      {
+        title: "Community-based solid waste management in Ghana",
+        url: "https://www.unep.org/regions/africa",
+        publisher: "UNEP Africa",
+      },
+    ],
+  },
+  {
+    slug: "wastecure-expands-cleaning-services-ashanti-region",
+    title: "Beyond plastic: why WasteCure now offers cleaning services too",
+    excerpt:
+      "Schools, offices and residential estates across the Ashanti Region need more than waste collection. Here is why we added professional cleaning services to our offering.",
+    category: "News",
+    readTime: "3 min read",
+    date: "2025-12-02",
+    author: "WasteCure Team",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/22dd501aaa7d.jpg",
+    imageSource: "AmaGhanaonline.com",
+    body: [
+      {
+        text: "When we started WasteCure in 2021, our focus was narrow and deliberate: give the Kwabre East Municipality a responsible place to take plastic waste. Four years on, the needs we hear from schools, offices and residential communities have grown beyond collection alone.",
+      },
+      {
+        heading: "What we are adding",
+        text: "Alongside waste collection, recyclables sorting and consultancy, WasteCure now offers cleaning services for schools, corporate office spaces, and residence and real estate facilities. It is a natural extension of work we were already doing informally for clients who asked for it.",
+      },
+      {
+        heading: "Why it matters",
+        text: "A clean environment and responsible waste management go hand in hand. Schools want tidy classrooms and compounds as much as they want a place to send recyclable waste. Offices and residential estates want both a reliable collection schedule and dependable cleaning support. Offering both under one roof means less coordination for our clients and more consistent standards.",
+      },
+      {
+        heading: "Scaling across the Ashanti Region",
+        text: "This expansion also reflects our broader goal: moving from a single-municipality service to a waste management partner across the Ashanti Region. If your school, office or estate needs waste collection, cleaning, or both, get in touch and we will design a plan that fits.",
+      },
+    ],
+    sources: [
+      {
+        title: "Ghana National Plastic Action Partnership",
+        url: "https://www.weforum.org/projects/global-plastic-action-partnership",
+        publisher: "World Economic Forum",
+      },
+    ],
+  },
+  {
+    slug: "why-ghanaian-cities-keep-flooding-waste-connection",
+    title: "Why Ghanaian cities keep flooding: the hidden waste connection",
+    excerpt:
+      "Heavy rain is only half the story. Here is how uncollected waste turns an ordinary downpour into a flood, and what communities can do about it.",
+    category: "Education",
+    readTime: "5 min read",
+    date: "2026-01-15",
+    author: "WasteCure Team",
+    image: REAL_PHOTOS.skipLoading2,
+    imageSource: "WasteCure",
+    body: [
+      {
+        text: "Almost every rainy season, towns and cities across Ghana experience flash flooding - streets turned to rivers, homes and shops damaged, and in the worst cases, lives lost. Heavy rainfall is the trigger, but it is rarely the whole story. In most urban flooding events, blocked drains carrying solid waste are a major contributing factor.",
+      },
+      {
+        heading: "How waste causes flooding",
+        text: "Drainage systems in Ghanaian towns are designed to channel rainwater away quickly. When plastic bags, bottles, food waste and other rubbish are dumped into gutters and drains instead of being collected, that water has nowhere to go. The Ghana National Disaster Management Organisation (NADMO) has repeatedly linked recurring floods in Accra, Kumasi and other urban centres to solid waste blocking drainage channels, particularly ahead of the rainy season when debris accumulates faster than it is cleared.",
+      },
+      {
+        heading: "The cost is more than inconvenience",
+        text: "Flooding damages homes, destroys goods in markets, disrupts transport, and creates standing water that becomes a breeding ground for mosquitoes and waterborne disease. A World Bank assessment of environmental degradation in Ghana estimated that flooding and poor waste management together account for a significant share of the country's annual environmental and health-related economic losses.",
+      },
+      {
+        heading: "What actually reduces the risk",
+        text: "The single most effective thing a community can do is keep waste out of drains in the first place - through regular collection, cleared drainage channels, and public awareness about not dumping into gutters. This is exactly why WasteCure runs scheduled collection routes and community clean-up drives across the Ashanti Region: every skip of waste removed from a roadside or drain is water that will actually flow the next time it rains.",
+      },
+      {
+        heading: "What you can do",
+        text: "If your street, market or estate has a drain that regularly clogs with rubbish, the fix is rarely more concrete - it is consistent collection. Talk to your assembly about drain clearing schedules, and make sure your own household or business waste goes to a collector rather than a gutter. If you would like a regular collection arrangement for your area, get in touch with our team.",
+      },
+    ],
+    sources: [
+      {
+        title: "Ghana flood preparedness and response",
+        url: "https://nadmo.gov.gh/",
+        publisher: "National Disaster Management Organisation (NADMO), Ghana",
+      },
+      {
+        title: "The cost of environmental degradation in Ghana",
+        url: "https://documents.worldbank.org/en/publication/documents-reports",
+        publisher: "World Bank",
+      },
+      {
+        title: "Urban flooding and solid waste management in West Africa",
+        url: "https://www.unep.org/regions/africa",
+        publisher: "UNEP Africa",
+      },
+    ],
+  },
+  {
+    slug: "how-often-schedule-cleaning-services-schools-offices-ghana",
+    title: "How often should you schedule professional cleaning? A guide for schools and offices",
+    excerpt:
+      "Daily, weekly, or monthly? Here is a practical framework for deciding how often your school, office or residential estate actually needs professional cleaning.",
+    category: "Tips",
+    readTime: "4 min read",
+    date: "2026-02-10",
+    author: "WasteCure Team",
+    image: REAL_PHOTOS.cleaningCrew,
+    imageSource: "WasteCure",
+    body: [
+      {
+        text: "One of the most common questions we get from schools, offices and estate managers is simple: how often do we actually need cleaning? The honest answer is that it depends on foot traffic, building use, and what is at stake if cleanliness slips - but there are useful rules of thumb.",
+      },
+      {
+        heading: "Daily: high-traffic and shared-surface areas",
+        text: "Classrooms, office floors, toilets, and reception areas that see continuous use should be cleaned daily. The World Health Organisation's guidance on hygiene in public and institutional settings emphasises that frequently touched surfaces - door handles, desks, toilet fittings - are the fastest routes for germs to spread, and daily cleaning materially reduces that risk, especially during school terms and flu seasons.",
+      },
+      {
+        heading: "Weekly: deeper cleans and less-trafficked spaces",
+        text: "Store rooms, meeting rooms used a few times a week, stairwells, and compound sweeping typically only need a thorough clean once or twice a week. This is also a good cadence for window cleaning, and for compound and car park sweeping in schools and residential estates.",
+      },
+      {
+        heading: "Monthly or scheduled: deep cleans and specialist jobs",
+        text: "Carpet shampooing, deep kitchen degreasing, gutter clearing, and post-event cleans are best scheduled monthly or on demand rather than folded into a routine. Real estate and facility managers often find that a monthly deep clean, paired with daily/weekly routine cleaning, keeps costs predictable while avoiding the buildup that leads to expensive one-off remediation later.",
+      },
+      {
+        heading: "Getting the schedule right for your site",
+        text: "The right frequency ultimately depends on your specific building, number of occupants, and budget. WasteCure's cleaning service for schools, corporate offices, and residential and real estate facilities starts with a short site walk-through so we can recommend a realistic schedule rather than a one-size-fits-all package. If you manage a school, office or estate in the Ashanti Region, get in touch and we will help you design one.",
+      },
+    ],
+    sources: [
+      {
+        title: "Water, sanitation, hygiene and waste management for institutions",
+        url: "https://www.who.int/teams/environment-climate-change-and-health/water-sanitation-and-health/publications-and-tools",
+        publisher: "World Health Organisation (WHO)",
+      },
+      {
+        title: "Cleaning and disinfecting public spaces",
+        url: "https://www.cdc.gov/hygiene/about/index.html",
+        publisher: "US Centers for Disease Control and Prevention (CDC)",
+      },
+    ],
+  },
+  {
+    slug: "waste-management-consultancy-does-your-business-need-one",
+    title: "Waste management consultancy: what it is, and does your business need one?",
+    excerpt:
+      "From waste audits to compliance and cost savings - here is what a waste management consultancy actually does, and the signs your organisation could use one.",
+    category: "Education",
+    readTime: "5 min read",
+    date: "2026-03-05",
+    author: "WasteCure Team",
+    image: REAL_PHOTOS.communityMeeting,
+    imageSource: "WasteCure",
+    body: [
+      {
+        text: "Most organisations only think about waste management when something goes wrong - an overflowing bin area, a complaint from neighbours, or a surprise cost from an informal collector. A waste management consultancy exists to get ahead of that, by helping institutions design a waste system that actually fits how they operate.",
+      },
+      {
+        heading: "What a waste audit actually involves",
+        text: "The starting point for most consultancy engagements is a waste audit: understanding what an organisation throws away, how much, and where it currently goes. This typically means observing bin areas over a period, categorising waste streams (general, recyclable, organic), and identifying where volumes could be reduced or diverted. The Ghana Environmental Protection Agency's guidance for institutions recommends this kind of baseline assessment before any new waste policy is introduced.",
+      },
+      {
+        heading: "Signs your organisation could use one",
+        text: "A few common indicators: your waste collection costs keep rising without a clear reason; staff, tenants or students are unsure where different types of waste should go; you are being asked about your environmental practices by clients, regulators or a landlord; or you simply have never had a documented waste management plan. Any one of these is a reasonable trigger to bring in outside advice.",
+      },
+      {
+        heading: "What good advice looks like",
+        text: "A useful consultancy engagement should leave you with something concrete: a waste segregation plan, a realistic collection schedule, staff or student training materials, and - where relevant - guidance on the by-laws that apply in your municipality. International frameworks like ISO 14001 for environmental management systems offer a helpful structure for larger institutions, even where full certification is not the goal.",
+      },
+      {
+        heading: "How WasteCure approaches it",
+        text: "We work with schools, churches, businesses and residential communities across the Ashanti Region to design waste management and recycling programmes that are realistic to maintain - not just impressive on paper. That often means pairing a waste audit with our existing collection and cleaning services, so the plan we recommend is one we can also help deliver. If you think your organisation is due for a look, reach out through our Contact page.",
+      },
+    ],
+    sources: [
+      {
+        title: "Guidelines for institutional waste management",
+        url: "https://www.epa.gov.gh/resources/publications",
+        publisher: "Environmental Protection Agency, Ghana",
+      },
+      {
+        title: "ISO 14001 Environmental Management Systems",
+        url: "https://www.iso.org/iso-14001-environmental-management.html",
+        publisher: "International Organization for Standardization (ISO)",
+      },
+      {
+        title: "What a Waste 2.0: A Global Snapshot of Solid Waste Management to 2050",
+        url: "https://openknowledge.worldbank.org/handle/10986/2175",
+        publisher: "World Bank",
       },
     ],
   },

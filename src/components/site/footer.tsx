@@ -51,13 +51,14 @@ export function Footer() {
                   Waste<span className="text-leaf-400">Cure</span>
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-forest-100/60">
-                  Healing the planet
+                  {SITE.tagline}
                 </span>
               </div>
             </Link>
             <p className="mt-4 text-sm text-forest-100/75 leading-relaxed max-w-xs">
-              {SITE.tagline} A Ghanaian waste management and recycling company
-              reducing plastic waste in Kwabre East Municipality, Kumasi.
+              A Ghanaian waste management company providing waste collection,
+              recycling, cleaning services and consultancy across the Ashanti
+              Region.
             </p>
             <div className="mt-5 flex gap-2">
               <a
@@ -151,7 +152,7 @@ export function Footer() {
             <div className="mt-5 rounded-lg border border-white/10 bg-white/5 p-3">
               <div className="flex items-center gap-2 text-xs text-forest-100/70">
                 <Leaf className="size-3.5 text-leaf-400" />
-                Mon - Sat: 7:30am - 6:00pm
+                {SITE.hours}
               </div>
             </div>
           </div>

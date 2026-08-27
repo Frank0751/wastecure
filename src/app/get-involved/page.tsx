@@ -16,14 +16,14 @@ import {
 } from "@/components/ui/select";
 import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
-import { IMAGES } from "@/lib/site-data";
+import { REAL_PHOTOS } from "@/lib/site-data";
 
 const WAYS_TO_HELP = [
   {
     icon: Users,
     title: "Join a clean-up",
     description:
-      "Lend a hand at our community clean-up drives across Kwabre East. Groups and individuals welcome.",
+      "Lend a hand at our community clean-up drives across the Ashanti Region. Groups and individuals welcome.",
   },
   {
     icon: GraduationCap,
@@ -100,7 +100,7 @@ export default function GetInvolvedPage() {
       <PageHeader
         title="Get Involved"
         subtitle="Lasting change does not happen alone. Whether you have an hour, a shop, or a whole community behind you - there is a role for you in the WasteCure movement."
-        image={IMAGES.community[1]}
+        image={REAL_PHOTOS.communityMeeting}
       />
 
       {/* Three ways to help - text cards, icons inline (no badge containers) */}

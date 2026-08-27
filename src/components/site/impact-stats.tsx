@@ -38,8 +38,7 @@ export function ImpactStats() {
           </h2>
           <p className="mt-4 text-base md:text-lg text-primary-foreground/80">
             Founded in 2021, WasteCure has grown into a four-line waste
-            management service - diverting plastic from landfill, one collection
-            at a time.
+            management service - real numbers from real work on the ground.
           </p>
         </motion.div>
 
@@ -79,12 +78,13 @@ export function ImpactStats() {
             </div>
             <div>
               <h3 className="text-lg md:text-xl font-semibold">
-                Coverage today: Kwabre East Municipality
+                Coverage today: Afigya Kwabre South District
               </h3>
               <p className="mt-1 text-sm text-primary-foreground/80">
                 Door-to-door collection, drop-off points and scheduled pickups
-                across the municipality - with a long-term vision to expand
-                across the Ashanti Region.
+                across about 5 communities along the Afrancho to Kodie
+                stretch - with a long-term vision to expand across the
+                Ashanti Region.
               </p>
             </div>
           </div>

@@ -12,11 +12,11 @@ import {
 const SECTIONS = [
   {
     title: "Acceptance of terms",
-    body: "By accessing and using the WasteCure website (wastecure.com), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website or services.",
+    body: "By accessing and using the WasteCure website (wastecure.org), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website or services.",
   },
   {
     title: "Our services",
-    body: "WasteCure provides plastic waste collection, recyclables sorting, composting, and waste management consultancy services in the Kwabre East Municipality, Kumasi, Ghana. Service availability, scheduling and pricing may vary and are confirmed at the point of booking.",
+    body: "WasteCure provides waste collection, recyclables sorting, cleaning services, and waste management consultancy across the Ashanti Region, Ghana. Service availability, scheduling and pricing may vary and are confirmed at the point of booking.",
   },
   {
     title: "User responsibilities",
@@ -120,10 +120,10 @@ export function TermsDialog({
                 <p className="mt-1 text-sm text-muted-foreground">
                   Contact us at{" "}
                   <a
-                    href="mailto:edmond.amankwaah@gmail.com"
+                    href="mailto:wastecureltd@gmail.com"
                     className="font-medium text-primary hover:underline"
                   >
-                    edmond.amankwaah@gmail.com
+                    wastecureltd@gmail.com
                   </a>{" "}
                   or call{" "}
                   <a

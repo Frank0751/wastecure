@@ -1,8 +1,32 @@
 import { db } from "@/lib/db";
+import { SITE } from "@/lib/site-data";
 
-const STAFF_EMAIL = "edmond.amankwaah@gmail.com";
+const STAFF_EMAIL = process.env.STAFF_EMAIL || SITE.email;
 
 type NotifType = "contact" | "pickup" | "volunteer" | "newsletter";
+
+/**
+ * Sends the notification email via Resend when RESEND_API_KEY is configured.
+ * Silently no-ops otherwise, so local/dev environments keep working with
+ * just the DB-backed admin dashboard notifications.
+ */
+async function sendEmail(subject: string, body: string) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return;
+
+  try {
+    const { Resend } = await import("resend");
+    const resend = new Resend(apiKey);
+    await resend.emails.send({
+      from: process.env.EMAIL_FROM || "WasteCure Website <onboarding@resend.dev>",
+      to: process.env.EMAIL_TO || STAFF_EMAIL,
+      subject,
+      text: body,
+    });
+  } catch (e) {
+    console.error("[notify] email send failed:", (e as Error).message);
+  }
+}
 
 /**
  * Creates a notification record in the database (fire-and-forget).
@@ -85,4 +109,7 @@ export function notifyStaff(type: NotifType, record: Record<string, unknown>) {
   } catch {
     // Silent
   }
+
+  // Fire-and-forget real email delivery (no-op if RESEND_API_KEY is unset)
+  sendEmail(subject, body);
 }
