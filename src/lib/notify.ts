@@ -17,15 +17,24 @@ async function sendEmail(subject: string, body: string): Promise<boolean> {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    await resend.emails.send({
+    // The Resend SDK does NOT throw on API errors - it resolves with
+    // { data: null, error }. Must check `error` explicitly or failures
+    // (e.g. sending to an unverified recipient in sandbox mode) look
+    // like a successful send.
+    const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_FROM || "WasteCure Website <onboarding@resend.dev>",
       to: process.env.EMAIL_TO || STAFF_EMAIL,
       subject,
       text: body,
     });
+    if (error) {
+      console.error("[notify] email send failed:", error.message || error);
+      return false;
+    }
+    console.log("[notify] email sent:", data?.id);
     return true;
   } catch (e) {
-    console.error("[notify] email send failed:", (e as Error).message);
+    console.error("[notify] email send threw:", (e as Error).message);
     return false;
   }
 }
