@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, MapPin, Instagram, Linkedin } from "lucide-react";
+import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { REAL_PHOTOS, SITE } from "@/lib/site-data";
 import { useLang } from "@/lib/i18n";
 import { ParticleBackground } from "@/components/site/particle-background";
+import { InstagramIcon, LinkedinIcon } from "@/components/site/brand-icons";
 
 const MARQUEE_TAGS = [
   "Households",
@@ -148,7 +149,7 @@ export function Hero() {
               aria-label="WasteCure on Instagram"
               className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-forest-100/80 backdrop-blur-sm transition hover:border-leaf-400/50 hover:bg-white/10 hover:text-white"
             >
-              <Instagram className="size-4" />
+              <InstagramIcon className="size-4" />
               Instagram
             </a>
             <a
@@ -158,7 +159,7 @@ export function Hero() {
               aria-label="WasteCure on LinkedIn"
               className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-forest-100/80 backdrop-blur-sm transition hover:border-leaf-400/50 hover:bg-white/10 hover:text-white"
             >
-              <Linkedin className="size-4" />
+              <LinkedinIcon className="size-4" />
               LinkedIn
             </a>
           </motion.div>

@@ -11,13 +11,12 @@ import {
   Mail,
   MapPin,
   Clock,
-  Instagram,
-  Linkedin,
   Send,
   Truck,
   Loader2,
   CheckCircle2,
 } from "lucide-react";
+import { InstagramIcon, LinkedinIcon } from "@/components/site/brand-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -245,7 +244,7 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Instagram className="size-4" />
+                      <InstagramIcon className="size-4" />
                       Instagram
                     </a>
                   </Button>
@@ -255,7 +254,7 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Linkedin className="size-4" />
+                      <LinkedinIcon className="size-4" />
                       LinkedIn
                     </a>
                   </Button>

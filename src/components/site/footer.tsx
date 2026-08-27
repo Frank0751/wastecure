@@ -6,8 +6,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Instagram,
-  Linkedin,
   ArrowUp,
   Leaf,
   LayoutDashboard,
@@ -16,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { NAV_STRUCTURE, SERVICES, SITE } from "@/lib/site-data";
 import { useUIStore } from "@/lib/ui-store";
 import { useLang } from "@/lib/i18n";
+import { InstagramIcon, LinkedinIcon } from "@/components/site/brand-icons";
 
 export function Footer() {
   const openAdmin = useUIStore((s) => s.openAdmin);
@@ -66,18 +65,18 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WasteCure on Instagram"
-                className="flex size-9 items-center justify-center rounded-full border border-white/15 text-forest-100/80 hover:bg-leaf-500 hover:text-white hover:border-leaf-500 transition"
+                className="flex size-9 items-center justify-center overflow-hidden rounded-lg transition hover:scale-105 hover:opacity-90"
               >
-                <Instagram className="size-4" />
+                <InstagramIcon className="size-full" />
               </a>
               <a
                 href={SITE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WasteCure on LinkedIn"
-                className="flex size-9 items-center justify-center rounded-full border border-white/15 text-forest-100/80 hover:bg-leaf-500 hover:text-white hover:border-leaf-500 transition"
+                className="flex size-9 items-center justify-center overflow-hidden rounded-lg transition hover:scale-105 hover:opacity-90"
               >
-                <Linkedin className="size-4" />
+                <LinkedinIcon className="size-full" />
               </a>
             </div>
           </div>
