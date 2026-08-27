@@ -60,7 +60,7 @@ export function CookieConsent() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 80, scale: 0.96 }}
           transition={{ type: "spring", stiffness: 220, damping: 26 }}
-          className="fixed bottom-5 left-5 z-50 w-[calc(100vw-2.5rem)] max-w-sm"
+          className="fixed bottom-5 left-5 z-50 w-[calc(100%-2.5rem)] max-w-sm"
         >
           <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-2xl ring-1 ring-black/5">
             {/* Accent strip */}

@@ -119,7 +119,7 @@ export default function AboutPage() {
       </section>
 
       {/* Vision, Mission & Core Values */}
-      <section className="relative bg-gradient-to-br from-forest-50/50 via-background to-leaf-50/30 py-20 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-forest-50/50 via-background to-leaf-50/30 py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal y={24}>
             <div className="relative rounded-2xl border border-primary/15 bg-card p-8 md:p-12 shadow-sm">
