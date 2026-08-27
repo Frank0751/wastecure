@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         });
         id = volunteer.id;
       } else {
-        const row = await db.$executeRaw`INSERT INTO Volunteer (id, name, phone, email, location, role, message, status, createdAt, updatedAt) VALUES (${crypto.randomUUID()}, ${data.name}, ${data.phone}, ${data.email ?? null}, ${data.location ?? null}, ${data.role}, ${data.message ?? null}, 'signed-up', ${new Date().toISOString()}, ${new Date().toISOString()})`;
+        const row = await db.$executeRaw`INSERT INTO "Volunteer" (id, name, phone, email, location, role, message, status, "createdAt", "updatedAt") VALUES (${crypto.randomUUID()}, ${data.name}, ${data.phone}, ${data.email ?? null}, ${data.location ?? null}, ${data.role}, ${data.message ?? null}, 'signed-up', ${new Date().toISOString()}, ${new Date().toISOString()})`;
         id = `raw-${row}`;
       }
     } catch (dbErr) {
@@ -98,7 +98,7 @@ export async function GET() {
       return NextResponse.json({ success: true, items });
     }
     // Raw fallback
-    const items = await db.$queryRaw`SELECT * FROM Volunteer ORDER BY datetime(createdAt) DESC LIMIT 50`;
+    const items = await db.$queryRaw`SELECT * FROM "Volunteer" ORDER BY "createdAt" DESC LIMIT 50`;
     return NextResponse.json({ success: true, items });
   } catch (err) {
     console.error("[volunteer GET] error:", err);

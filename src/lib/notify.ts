@@ -112,11 +112,12 @@ export async function notifyStaff(
   // Persist to DB using raw SQL (fire-and-forget, never blocks the main
   // request). Raw SQL is used for reliability because the dev server may
   // cache an old Prisma client that doesn't know the Notification model.
-  // Note: "to" and "read" are quoted because they are reserved in SQLite.
+  // Table/column names and "read"/"to" are double-quoted for Postgres,
+  // which preserves case and requires quoting for reserved-ish words.
   try {
     const notifId = `n-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     const now = new Date().toISOString();
-    db.$executeRaw`INSERT INTO Notification (id, type, refId, "to", subject, body, status, "read", createdAt) VALUES (${notifId}, ${type}, ${id}, ${STAFF_EMAIL}, ${subject}, ${body}, 'pending', 0, ${now})`.catch(
+    db.$executeRaw`INSERT INTO "Notification" (id, type, "refId", "to", subject, body, status, "read", "createdAt") VALUES (${notifId}, ${type}, ${id}, ${STAFF_EMAIL}, ${subject}, ${body}, 'pending', false, ${now})`.catch(
       (e: unknown) =>
         console.error("[notify] insert failed:", (e as Error).message)
     );

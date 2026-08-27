@@ -81,7 +81,7 @@ export function Header() {
 
         {/* Desktop nav with dropdowns */}
         <nav
-          className="hidden xl:flex items-center gap-0.5"
+          className="hidden 2xl:flex items-center gap-0.5"
           aria-label="Primary navigation"
         >
           {NAV_STRUCTURE.map((item) => (
@@ -97,7 +97,7 @@ export function Header() {
         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           <a
             href={`tel:${SITE.phoneIntl}`}
-            className="hidden xl:inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium text-foreground/80 hover:text-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="hidden 2xl:inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium text-foreground/80 hover:text-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <Phone className="size-4" />
             {SITE.phone}
@@ -123,7 +123,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="xl:hidden"
+                className="2xl:hidden"
                 aria-label="Open menu"
               >
                 <Menu className="size-5" />

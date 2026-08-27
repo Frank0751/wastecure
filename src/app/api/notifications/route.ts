@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 export async function GET() {
   try {
     // Use raw SQL for reliability (dev server may cache an old Prisma client)
-    const items = (await db.$queryRaw`SELECT * FROM Notification ORDER BY datetime(createdAt) DESC LIMIT 50`) as Array<{
+    const items = (await db.$queryRaw`SELECT * FROM "Notification" ORDER BY "createdAt" DESC LIMIT 50`) as Array<{
       id: string;
       type: string;
       refId: string;
@@ -12,7 +12,7 @@ export async function GET() {
       subject: string;
       body: string;
       status: string;
-      read: number;
+      read: boolean;
       createdAt: string;
     }>;
     return NextResponse.json({ success: true, items });
@@ -35,7 +35,7 @@ export async function PATCH(req: Request) {
         { status: 400 }
       );
     }
-    await db.$executeRaw`UPDATE Notification SET read = 1 WHERE id = ${body.id}`;
+    await db.$executeRaw`UPDATE "Notification" SET "read" = true WHERE id = ${body.id}`;
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[notifications PATCH] error:", err);
