@@ -81,9 +81,10 @@ export async function POST(req: Request) {
         );
 
         try {
-          const { getZai } = await import("@/lib/zai");
+          const { getZai, ZAI_MODEL } = await import("@/lib/zai");
           const zai = await getZai();
           const llmStream: any = await zai.chat.completions.create({
+            model: ZAI_MODEL,
             messages,
             stream: true,
           });

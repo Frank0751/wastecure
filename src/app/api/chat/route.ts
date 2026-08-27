@@ -77,9 +77,12 @@ export async function POST(req: Request) {
 
     let reply: string;
     try {
-      const { getZai } = await import("@/lib/zai");
+      const { getZai, ZAI_MODEL } = await import("@/lib/zai");
       const zai = await getZai();
-      const completion: any = await zai.chat.completions.create({ messages });
+      const completion: any = await zai.chat.completions.create({
+        model: ZAI_MODEL,
+        messages,
+      });
       reply =
         completion?.choices?.[0]?.message?.content?.trim() ||
         completion?.message?.content?.trim() ||

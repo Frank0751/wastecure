@@ -270,14 +270,14 @@ export const TEAM = [
   },
   {
     name: "Edmond Amankwaah",
-    role: "Technical & Operations Manager",
-    bio: "Specialises in operations, organisation and efficient waste management for sustainable communities.",
+    role: "Sales, Marketing & Product Development",
+    bio: "Specialises in sales, marketing and product development, driving growth through innovative and sustainable solutions.",
     image: "/images/team/edmond-amankwaah.jpg",
   },
   {
     name: "Maxwell Opoku Amoako",
-    role: "Sales, Marketing & Product Development",
-    bio: "Specialises in sales, marketing and product development, driving growth through innovative and sustainable solutions.",
+    role: "Technical & Operations Manager",
+    bio: "Specialises in operations, organisation and efficient waste management for sustainable communities.",
     image: "/images/team/maxwell-opoku-amoako.jpg",
   },
 ] as const;
