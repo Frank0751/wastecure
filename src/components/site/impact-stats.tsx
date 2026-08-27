@@ -84,7 +84,7 @@ export function ImpactStats() {
                 Door-to-door collection, drop-off points and scheduled pickups
                 across about 5 communities along the Afrancho to Kodie
                 stretch - with a long-term vision to expand across the
-                Ashanti Region.
+                Ashanti Region and beyond.
               </p>
             </div>
           </div>

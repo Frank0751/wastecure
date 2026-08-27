@@ -37,23 +37,29 @@ export async function POST(req: Request) {
     }
 
     const data = parsed.data;
-    const pickup = await db.pickupRequest.create({
-      data: {
-        name: data.name,
-        phone: data.phone,
-        email: data.email ?? null,
-        address: data.address,
-        location: data.location,
-        wasteType: data.wasteType,
-        volume: data.volume ?? null,
-        preferredDate: data.preferredDate ?? null,
-        notes: data.notes ?? null,
-      },
-    });
 
-    // Fire-and-forget notification to staff
-    notifyStaff("pickup", {
-      id: pickup.id,
+    let pickupId: string | null = null;
+    try {
+      const pickup = await db.pickupRequest.create({
+        data: {
+          name: data.name,
+          phone: data.phone,
+          email: data.email ?? null,
+          address: data.address,
+          location: data.location,
+          wasteType: data.wasteType,
+          volume: data.volume ?? null,
+          preferredDate: data.preferredDate ?? null,
+          notes: data.notes ?? null,
+        },
+      });
+      pickupId = pickup.id;
+    } catch (dbErr) {
+      console.error("[pickup POST] DB error:", dbErr);
+    }
+
+    const emailSent = await notifyStaff("pickup", {
+      id: pickupId ?? `pending-${Date.now()}`,
       name: data.name,
       phone: data.phone,
       email: data.email ?? "",
@@ -65,8 +71,15 @@ export async function POST(req: Request) {
       notes: data.notes ?? "",
     });
 
+    if (!pickupId && !emailSent) {
+      return NextResponse.json(
+        { success: false, error: "Server error. Please try again later." },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { success: true, id: pickup.id },
+      { success: true, id: pickupId ?? undefined },
       { status: 201 }
     );
   } catch (err) {

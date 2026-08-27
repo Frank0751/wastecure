@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "WasteCure | Waste Management Specialists in Ghana",
     short_name: "WasteCure",
     description:
-      "WasteCure is a Ghanaian waste management company based in Kumasi, serving the Ashanti Region. Waste collection, recycling, cleaning services, and waste management consultancy.",
+      "WasteCure is a Ghanaian waste management company based in Kumasi, serving clients across Ghana. Waste collection, recycling, cleaning services, and waste management consultancy.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -202,7 +202,7 @@ export function Chatbot() {
               ? {
                   ...m,
                   content:
-                    "Sorry, I couldn't respond right now. Please call us on 0540652347 or use the contact form.",
+                    "Sorry, I couldn't respond right now. Please call us on +233 20 397 0216 or use the contact form.",
                 }
               : m
           )
@@ -215,7 +215,7 @@ export function Chatbot() {
             ? {
                 ...m,
                 content:
-                  "I'm having trouble connecting. Please try again or call us on 0540652347.",
+                  "I'm having trouble connecting. Please try again or call us on +233 20 397 0216.",
               }
             : m
         )

@@ -21,9 +21,9 @@ import { REAL_PHOTOS } from "@/lib/site-data";
 const WAYS_TO_HELP = [
   {
     icon: Users,
-    title: "Join a clean-up",
+    title: "Partner on a clean-up",
     description:
-      "Lend a hand at our community clean-up drives across the Ashanti Region. Groups and individuals welcome.",
+      "Bring your team, school or community group to a clean-up drive we run across Ghana.",
   },
   {
     icon: GraduationCap,
@@ -40,10 +40,10 @@ const WAYS_TO_HELP = [
 ];
 
 const ROLES = [
-  "Volunteer at clean-ups",
+  "Partner on a clean-up",
   "Host a collection point",
   "Invite us to my school / church",
-  "Partner organisation",
+  "Corporate or organisation partnership",
   "Other",
 ];
 
@@ -59,7 +59,7 @@ export default function GetInvolvedPage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim() || !role) {
-      toast.error("Please fill in your name, phone and how you'd like to help.");
+      toast.error("Please fill in your name, phone and how you'd like to work with us.");
       return;
     }
     setSubmitting(true);
@@ -77,7 +77,7 @@ export default function GetInvolvedPage() {
         }),
       });
       if (!res.ok) throw new Error("failed");
-      toast.success("Thank you for stepping up!", {
+      toast.success("Thank you for reaching out!", {
         description: "We'll reach out within 1-2 business days.",
       });
       setName("");
@@ -88,7 +88,7 @@ export default function GetInvolvedPage() {
       setMessage("");
     } catch {
       toast.error("Could not submit", {
-        description: "Please try again or call us on 0540652347.",
+        description: "Please try again or call us on +233 20 397 0216.",
       });
     } finally {
       setSubmitting(false);
@@ -99,7 +99,7 @@ export default function GetInvolvedPage() {
     <>
       <PageHeader
         title="Get Involved"
-        subtitle="Lasting change does not happen alone. Whether you have an hour, a shop, or a whole community behind you - there is a role for you in the WasteCure movement."
+        subtitle="Partnerships power lasting change. Whether you run a school, a business, or a community group - there is a way to work with WasteCure."
         image={REAL_PHOTOS.communityMeeting}
       />
 
@@ -115,11 +115,11 @@ export default function GetInvolvedPage() {
             className="mx-auto max-w-3xl text-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
-              Three ways you can help
+              Three ways to work with us
             </h2>
             <p className="mt-4 text-base md:text-lg text-muted-foreground">
-              Every action counts. Pick what works for you - we will support you
-              the rest of the way.
+              Every partnership counts. Pick what works for you - we will
+              support you the rest of the way.
             </p>
           </motion.div>
 
@@ -149,7 +149,7 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Volunteer signup form */}
+      {/* Partnership sign-up form */}
       <section className="relative bg-gradient-to-br from-forest-50/50 via-background to-leaf-50/30 py-20 md:py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -164,9 +164,9 @@ export default function GetInvolvedPage() {
               className="absolute -top-12 -right-12 size-40 rounded-full bg-leaf-500/15 blur-2xl"
             />
             <div className="relative">
-              <h2 className="text-2xl font-bold text-foreground">Sign up to help</h2>
+              <h2 className="text-2xl font-bold text-foreground">Partner with us</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Tell us how you&apos;d like to get involved. We&apos;ll be in touch.
+                Tell us how you&apos;d like to work with WasteCure. We&apos;ll be in touch.
               </p>
 
               <form onSubmit={submit} className="mt-6 space-y-4">
@@ -219,12 +219,12 @@ export default function GetInvolvedPage() {
 
                 <div className="space-y-1.5">
                   <Label>
-                    How would you like to help?{" "}
+                    How would you like to work with us?{" "}
                     <span className="text-destructive">*</span>
                   </Label>
                   <Select value={role} onValueChange={setRole}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Choose a role" />
+                      <SelectValue placeholder="Choose an option" />
                     </SelectTrigger>
                     <SelectContent>
                       {ROLES.map((r) => (
@@ -261,7 +261,7 @@ export default function GetInvolvedPage() {
                     </>
                   ) : (
                     <>
-                      I&apos;m in
+                      Get in touch
                       <ArrowRight className="size-4" />
                     </>
                   )}
@@ -269,7 +269,7 @@ export default function GetInvolvedPage() {
 
                 <p className="text-center text-xs text-muted-foreground">
                   We respect your privacy. Your details are only used to contact
-                  you about WasteCure activities.
+                  you about this partnership.
                 </p>
               </form>
             </div>
@@ -278,8 +278,8 @@ export default function GetInvolvedPage() {
       </section>
 
       <CTASection
-        title="Questions before you sign up?"
-        subtitle="Reach out and we'll be happy to talk through how you can be part of WasteCure."
+        title="Questions before you reach out?"
+        subtitle="Reach out and we'll be happy to talk through how your school, business or community can work with WasteCure."
         primaryLabel="Contact us"
         primaryHref="/contact"
         secondaryLabel="Read the blog"

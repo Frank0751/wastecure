@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | WasteCure",
   },
   description:
-    "WasteCure is a Ghanaian waste management company based in Kumasi, serving the Ashanti Region. We provide waste collection, recyclables sorting, cleaning services, and waste management consultancy for a cleaner, greener future.",
+    "WasteCure is a Ghanaian waste management company based in Kumasi, serving clients across Ghana. We provide waste collection, recyclables sorting, cleaning services, and waste management consultancy for a cleaner, greener future.",
   keywords: [
     "WasteCure",
     "waste management Ghana",
@@ -42,6 +42,7 @@ export const metadata: Metadata = {
     "plastic recycling Kumasi",
     "waste collection Kumasi",
     "cleaning services Kumasi",
+    "waste collection Ghana",
     "recycling Ghana",
     "waste collection",
     "sustainability Ghana",
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WasteCure | Waste Management Specialists in Ghana",
     description:
-      "Reducing waste pollution in the Ashanti Region through responsible collection, recycling, cleaning services and community education. Based in Kumasi.",
+      "Reducing waste pollution across Ghana through responsible collection, recycling, cleaning services and community education. Based in Kumasi.",
     url: "https://wastecure.org",
     siteName: "WasteCure",
     type: "website",
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WasteCure | Waste Management Specialists in Ghana",
     description:
-      "Reducing waste pollution in the Ashanti Region through responsible collection, recycling, cleaning services and community education.",
+      "Reducing waste pollution across Ghana through responsible collection, recycling, cleaning services and community education.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -102,14 +103,14 @@ const jsonLd = {
   "@id": "https://wastecure.org/#business",
   name: "WasteCure Limited Company",
   description:
-    "Ghanaian waste management company providing waste collection, recyclables sorting, cleaning services, and waste management consultancy across the Ashanti Region.",
+    "Ghanaian waste management company providing waste collection, recyclables sorting, cleaning services, and waste management consultancy across Ghana.",
   url: "https://wastecure.org",
   telephone: SITE.phoneIntl,
   email: SITE.email,
   foundingDate: "2021",
   areaServed: {
-    "@type": "AdministrativeArea",
-    name: "Ashanti Region, Ghana",
+    "@type": "Country",
+    name: "Ghana",
   },
   address: {
     "@type": "PostalAddress",

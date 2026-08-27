@@ -16,7 +16,7 @@ const SECTIONS = [
   },
   {
     title: "Our services",
-    body: "WasteCure provides waste collection, recyclables sorting, cleaning services, and waste management consultancy across the Ashanti Region, Ghana. Service availability, scheduling and pricing may vary and are confirmed at the point of booking.",
+    body: "WasteCure provides waste collection, recyclables sorting, cleaning services, and waste management consultancy across Ghana. Service availability, scheduling and pricing may vary and are confirmed at the point of booking.",
   },
   {
     title: "User responsibilities",
@@ -127,10 +127,10 @@ export function TermsDialog({
                   </a>{" "}
                   or call{" "}
                   <a
-                    href="tel:+233540652347"
+                    href="tel:+233203970216"
                     className="font-medium text-primary hover:underline"
                   >
-                    0540652347
+                    +233 20 397 0216
                   </a>
                   .
                 </p>

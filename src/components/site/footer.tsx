@@ -136,6 +136,15 @@ export function Footer() {
               </li>
               <li>
                 <a
+                  href={`tel:${SITE.phoneIntl2}`}
+                  className="flex items-start gap-2.5 text-sm text-forest-100/70 hover:text-leaf-400 transition-colors"
+                >
+                  <Phone className="size-4 mt-0.5 text-leaf-400/80 shrink-0" />
+                  {SITE.phone2}
+                </a>
+              </li>
+              <li>
+                <a
                   href={`mailto:${SITE.email}`}
                   className="flex items-start gap-2.5 text-sm text-forest-100/70 hover:text-leaf-400 transition-colors break-all"
                 >

@@ -10,9 +10,9 @@ type NotifType = "contact" | "pickup" | "volunteer" | "newsletter";
  * Silently no-ops otherwise, so local/dev environments keep working with
  * just the DB-backed admin dashboard notifications.
  */
-async function sendEmail(subject: string, body: string) {
+async function sendEmail(subject: string, body: string): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return;
+  if (!apiKey) return false;
 
   try {
     const { Resend } = await import("resend");
@@ -23,18 +23,23 @@ async function sendEmail(subject: string, body: string) {
       subject,
       text: body,
     });
+    return true;
   } catch (e) {
     console.error("[notify] email send failed:", (e as Error).message);
+    return false;
   }
 }
 
 /**
- * Creates a notification record in the database (fire-and-forget).
- * In production, this would also trigger an SMTP send via a provider
- * (Resend, SendGrid, etc.). Here we persist it so staff can view it
- * in the admin dashboard's Notifications tab.
+ * Records a notification (best-effort DB insert for the admin dashboard)
+ * and emails staff via Resend when RESEND_API_KEY is configured. Returns
+ * true if the email was actually sent, so callers can treat "email sent"
+ * as a success path even when the database is unavailable.
  */
-export function notifyStaff(type: NotifType, record: Record<string, unknown>) {
+export async function notifyStaff(
+  type: NotifType,
+  record: Record<string, unknown>
+): Promise<boolean> {
   const id = (record.id as string) || `unknown-${Date.now()}`;
   const name = (record.name as string) || "a visitor";
   const phone = (record.phone as string) || "-";
@@ -110,6 +115,6 @@ export function notifyStaff(type: NotifType, record: Record<string, unknown>) {
     // Silent
   }
 
-  // Fire-and-forget real email delivery (no-op if RESEND_API_KEY is unset)
-  sendEmail(subject, body);
+  // Real email delivery (no-op, returns false, if RESEND_API_KEY is unset)
+  return sendEmail(subject, body);
 }

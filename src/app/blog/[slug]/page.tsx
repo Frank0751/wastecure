@@ -178,7 +178,7 @@ export default async function ArticlePage({
               Want to take action?
             </h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Request a pickup, volunteer with us, or get in touch - we would
+              Request a pickup, partner with us, or get in touch - we would
               love to hear from you.
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-3">

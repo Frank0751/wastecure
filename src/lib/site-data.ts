@@ -7,11 +7,13 @@ export const SITE = {
   legalName: "WasteCure Limited Company",
   tagline: "Waste Management Specialists",
   founded: 2021,
-  phone: "0540652347",
-  phoneIntl: "+233540652347",
+  phone: "+233 20 397 0216",
+  phoneIntl: "+233203970216",
+  phone2: "+233 20 397 0235",
+  phoneIntl2: "+233203970235",
   email: "wastecureltd@gmail.com",
   location: "2nd Floor, Aseda House, Adum, Kumasi, Ashanti Region, Ghana",
-  region: "Ashanti Region, Ghana",
+  region: "Ghana",
   hours: "Mon - Sat: 8:00am - 5:00pm",
   industry: "Environmental Services",
   employees: "2-10",
@@ -160,6 +162,7 @@ export const NAV_STRUCTURE = [
       { label: "Comparison", href: "/sustainability#comparison" },
     ],
   },
+  { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
   { label: "Get Involved", href: "/get-involved" },
   { label: "Contact", href: "/contact" },
@@ -171,7 +174,7 @@ export const SERVICES = [
     title: "Waste Collection",
     short: "Reliable waste collection for homes, businesses and institutions.",
     description:
-      "Our services include waste collection for households, businesses, schools and institutions across the Ashanti Region, encouraging responsible disposal rather than dumping or burning.",
+      "Our services include waste collection for households, businesses, schools and institutions across Ghana, encouraging responsible disposal rather than dumping or burning.",
     points: [
       "Door-to-door and drop-off waste collection",
       "Scheduled pickup for businesses and institutions",
@@ -312,8 +315,23 @@ export const MILESTONES = [
   },
   {
     year: "2025",
-    title: "Scaling across Ashanti Region",
+    title: "Scaling across Ghana",
     description:
-      "With a proven model in Kwabre East, WasteCure is preparing to expand collection and education across the wider Ashanti Region.",
+      "With a proven model in Kwabre East, WasteCure is preparing to expand collection and education across the Ashanti Region and beyond.",
   },
+] as const;
+
+export const GALLERY_ITEMS = [
+  { src: REAL_PHOTOS.streetCrew, caption: "Street clean-up crew in action", category: "Collection" },
+  { src: REAL_PHOTOS.skipLoading1, caption: "Loading collected waste for disposal", category: "Collection" },
+  { src: REAL_PHOTOS.wheelbarrowCollection, caption: "Collecting waste near a local market", category: "Collection" },
+  { src: REAL_PHOTOS.skipLoading2, caption: "District waste skip being loaded", category: "Collection" },
+  { src: REAL_PHOTOS.cleaningCrew, caption: "Cleaning crew at a client site", category: "Cleaning" },
+  { src: REAL_PHOTOS.duskSweep, caption: "Field team sweeping a road at dusk", category: "Cleaning" },
+  { src: REAL_PHOTOS.marketEngagement, caption: "Engaging shopkeepers during a collection round", category: "Community" },
+  { src: REAL_PHOTOS.communityMeeting, caption: "Community and partner briefing session", category: "Community" },
+  { src: REAL_PHOTOS.groupPhoto1, caption: "WasteCure team with community partners", category: "Team" },
+  { src: REAL_PHOTOS.groupPhoto2, caption: "Community partners gathering", category: "Team" },
+  { src: IMAGES.bottles[0], caption: "Sorted PET bottles ready for recycling", category: "Recycling" },
+  { src: IMAGES.education[2], caption: "Children learning about recycling", category: "Education" },
 ] as const;

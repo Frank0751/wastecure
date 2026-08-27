@@ -77,9 +77,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-forest-100/90 leading-relaxed"
           >
-            WasteCure is reducing waste pollution in the{" "}
+            WasteCure is reducing waste pollution across{" "}
             <span className="text-white font-semibold">
-              Ashanti Region
+              Ghana
             </span>{" "}
             by providing advanced waste solutions for sustainable waste
             management - building a cleaner, greener environment one
@@ -118,7 +118,7 @@ export function Hero() {
           >
             {[
               { label: t("hero.founded"), value: "2021" },
-              { label: t("hero.serviceArea"), value: "Ashanti Region" },
+              { label: t("hero.serviceArea"), value: "Ghana" },
               { label: t("hero.coreServices"), value: "4 Lines" },
             ].map((chip) => (
               <div

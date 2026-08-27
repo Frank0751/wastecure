@@ -33,7 +33,7 @@ const SECTIONS = [
   {
     icon: Mail,
     title: "Your rights",
-    body: "You have the right to request access to, correction of, or deletion of your personal data. To exercise these rights, contact us at wastecureltd@gmail.com or call 0540652347. We will respond within 30 days.",
+    body: "You have the right to request access to, correction of, or deletion of your personal data. To exercise these rights, contact us at wastecureltd@gmail.com or call +233 20 397 0216. We will respond within 30 days.",
   },
 ];
 
@@ -123,10 +123,10 @@ export function PrivacyPolicyDialog({
                   </a>{" "}
                   or call{" "}
                   <a
-                    href="tel:+233540652347"
+                    href="tel:+233203970216"
                     className="font-medium text-primary hover:underline"
                   >
-                    0540652347
+                    +233 20 397 0216
                   </a>
                   .
                 </p>

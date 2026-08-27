@@ -39,23 +39,32 @@ export async function POST(req: Request) {
     }
 
     const data = parsed.data;
-    const submission = await db.contactSubmission.create({
-      data: {
-        name: data.name,
-        // Fall back to empty string when no email is provided so the
-        // submission succeeds regardless of the client schema version.
-        email: (data.email && data.email.length > 0 ? data.email : "") as string,
-        phone: data.phone ?? null,
-        organisation: data.organisation ?? null,
-        service: data.service ?? null,
-        location: data.location ?? null,
-        message: data.message,
-      },
-    });
 
-    // Fire-and-forget notification to staff
-    notifyStaff("contact", {
-      id: submission.id,
+    // Try to persist to the database, but don't let a DB outage sink the
+    // whole request - the email notification below is an independent
+    // delivery path that can still get the enquiry to staff.
+    let submissionId: string | null = null;
+    try {
+      const submission = await db.contactSubmission.create({
+        data: {
+          name: data.name,
+          // Fall back to empty string when no email is provided so the
+          // submission succeeds regardless of the client schema version.
+          email: (data.email && data.email.length > 0 ? data.email : "") as string,
+          phone: data.phone ?? null,
+          organisation: data.organisation ?? null,
+          service: data.service ?? null,
+          location: data.location ?? null,
+          message: data.message,
+        },
+      });
+      submissionId = submission.id;
+    } catch (dbErr) {
+      console.error("[contact POST] DB error:", dbErr);
+    }
+
+    const emailSent = await notifyStaff("contact", {
+      id: submissionId ?? `pending-${Date.now()}`,
       name: data.name,
       email: data.email ?? "",
       phone: data.phone ?? "",
@@ -65,8 +74,15 @@ export async function POST(req: Request) {
       message: data.message,
     });
 
+    if (!submissionId && !emailSent) {
+      return NextResponse.json(
+        { success: false, error: "Server error. Please try again later." },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { success: true, id: submission.id },
+      { success: true, id: submissionId ?? undefined },
       { status: 201 }
     );
   } catch (err) {

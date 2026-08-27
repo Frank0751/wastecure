@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 export const metadata = {
   title: "Our Services",
   description:
-    "Waste collection, recyclables sorting, cleaning services and waste management consultancy from WasteCure, serving the Ashanti Region, Ghana.",
+    "Waste collection, recyclables sorting, cleaning services and waste management consultancy from WasteCure, serving Ghana.",
 };
 
 // 7 plastic types for the waste guide (text labels only, no emojis)
@@ -80,7 +80,7 @@ export default function ServicesPage() {
     <>
       <PageHeader
         title="Our Services"
-        subtitle="From waste collection and recycling to cleaning services and consultancy, our services are designed to keep communities clean and support a circular economy across the Ashanti Region."
+        subtitle="From waste collection and recycling to cleaning services and consultancy, our services are designed to keep communities clean and support a circular economy across Ghana."
         image={REAL_PHOTOS.streetCrew}
       />
 

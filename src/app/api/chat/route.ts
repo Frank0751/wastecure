@@ -8,13 +8,13 @@ About WasteCure:
 - Mission: To provide advanced waste solutions with the required expertise, technical and managerial competencies, and resources to support our clients achieve their waste management goals.
 - Services: (1) Waste collection - door-to-door and drop-off; (2) Recyclables collection & sorting - PET, HDPE, LDPE; (3) Cleaning services for schools, corporate offices, and residence/real estate facilities; (4) Waste management consultancy for institutions and communities.
 - Also does community engagement/education and clean-ups.
-- Contact: phone 0540652347, email wastecureltd@gmail.com, Instagram @wastecureghana, LinkedIn company/wastecure.
-- Service area: Ashanti Region, Ghana (based in Kumasi). Currently active in the Afigya Kwabre South district.
+- Contact: phone +233 20 397 0216, email wastecureltd@gmail.com, Instagram @wastecureghana, LinkedIn company/wastecure.
+- Service area: Ghana (based in Kumasi, Ashanti Region). Currently active in the Afigya Kwabre South district, expanding nationwide.
 
 Your role:
 - Answer questions about WasteCure's services, pricing approach, service area, how to request pickup, how to partner, how communities/schools can get involved.
 - Be friendly, concise, practical and Ghana-context-aware. Use simple English.
-- If someone wants to request pickup or book consultancy, encourage them to use the contact form on the page (section #contact) or call 0540652347.
+- If someone wants to request pickup or book consultancy, encourage them to use the contact form on the page (section #contact) or call +233 20 397 0216.
 - If you don't know something specific (exact pricing, real-time availability), be honest and direct them to contact the team.
 - Keep replies under 120 words unless the user asks for detail.
 - Never invent facts about WasteCure that aren't in this prompt.`;
@@ -83,11 +83,11 @@ export async function POST(req: Request) {
       reply =
         completion?.choices?.[0]?.message?.content?.trim() ||
         completion?.message?.content?.trim() ||
-        "I'm not sure how to answer that right now. Please call us on 0540652347 or use the contact form.";
+        "I'm not sure how to answer that right now. Please call us on +233 20 397 0216 or use the contact form.";
     } catch (llmErr) {
       console.error("[chat] LLM error:", llmErr);
       reply =
-        "I'm having trouble connecting to my knowledge service right now. Please call us on 0540652347 or send a message through the contact form and we'll respond within 1–2 business days.";
+        "I'm having trouble connecting to my knowledge service right now. Please call us on +233 20 397 0216 or send a message through the contact form and we'll respond within 1–2 business days.";
     }
 
     // Persist assistant reply
@@ -108,7 +108,7 @@ export async function POST(req: Request) {
         success: false,
         error: "Server error",
         reply:
-          "I'm having trouble responding right now. Please call WasteCure on 0540652347 or use the contact form.",
+          "I'm having trouble responding right now. Please call WasteCure on +233 20 397 0216 or use the contact form.",
       },
       { status: 500 }
     );

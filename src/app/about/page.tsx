@@ -182,7 +182,7 @@ export default function AboutPage() {
             </h2>
             <p className="mt-4 text-base md:text-lg text-muted-foreground">
               Key milestones in the WasteCure journey - from founding in 2021 to
-              scaling across the Ashanti Region.
+              scaling across Ghana.
             </p>
           </Reveal>
 

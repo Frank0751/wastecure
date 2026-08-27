@@ -15,7 +15,7 @@ const OFFER_CARDS = [
   {
     title: "Waste Collection",
     description:
-      "Door-to-door and drop-off waste collection across the Ashanti Region.",
+      "Door-to-door and drop-off waste collection across Ghana.",
   },
   {
     title: "Recycling & Sorting",
@@ -67,9 +67,9 @@ export default function Home() {
               Advanced waste solutions for cleaner communities
             </h2>
             <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-              We give households, businesses and institutions across the
-              Ashanti Region a real, sustainable option for waste management -
-              backed by education and a recycling-first approach.
+              We give households, businesses and institutions across Ghana a
+              real, sustainable option for waste management - backed by
+              education and a recycling-first approach.
             </p>
           </motion.div>
 

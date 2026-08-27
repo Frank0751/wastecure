@@ -126,7 +126,7 @@ export function PickupWizard({
       });
     } catch {
       toast.error("Could not submit request", {
-        description: "Please try again or call us on 0540652347.",
+        description: "Please try again or call us on +233 20 397 0216.",
       });
     } finally {
       setSubmitting(false);

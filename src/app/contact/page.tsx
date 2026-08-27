@@ -67,7 +67,7 @@ const CONTACT_DETAILS = [
   {
     icon: Phone,
     label: "Phone",
-    value: SITE.phone,
+    value: `${SITE.phone} / ${SITE.phone2}`,
     href: `tel:${SITE.phoneIntl}`,
   },
   {
@@ -146,7 +146,7 @@ export default function ContactPage() {
     } catch (err) {
       toast.error("Could not send message", {
         description:
-          "Something went wrong. Please try again or call us directly on 0540652347.",
+          "Something went wrong. Please try again or call us directly on +233 20 397 0216.",
       });
     } finally {
       setSubmitting(false);
@@ -170,7 +170,7 @@ export default function ContactPage() {
       setPickupOpen(false);
     } catch (err) {
       toast.error("Could not request pickup", {
-        description: "Please try again or call us on 0540652347.",
+        description: "Please try again or call us on +233 20 397 0216.",
       });
     } finally {
       setPickupSubmitting(false);

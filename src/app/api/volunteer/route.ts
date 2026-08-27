@@ -37,29 +37,32 @@ export async function POST(req: Request) {
 
     // Use the Prisma client if the model is available; otherwise fall back
     // to a raw SQL insert (the running dev-server client may be cached and
-    // not yet know about the new Volunteer model).
-    let id: string;
-    if (db.volunteer) {
-      const volunteer = await db.volunteer.create({
-        data: {
-          name: data.name,
-          phone: data.phone,
-          email: data.email ?? null,
-          location: data.location ?? null,
-          role: data.role,
-          message: data.message ?? null,
-        },
-      });
-      id = volunteer.id;
-    } else {
-      // Raw fallback
-      const row = await db.$executeRaw`INSERT INTO Volunteer (id, name, phone, email, location, role, message, status, createdAt, updatedAt) VALUES (${crypto.randomUUID()}, ${data.name}, ${data.phone}, ${data.email ?? null}, ${data.location ?? null}, ${data.role}, ${data.message ?? null}, 'signed-up', ${new Date().toISOString()}, ${new Date().toISOString()})`;
-      id = `raw-${row}`;
+    // not yet know about the new Volunteer model). Either way, a DB outage
+    // shouldn't sink the request - the email notification is independent.
+    let id: string | null = null;
+    try {
+      if (db.volunteer) {
+        const volunteer = await db.volunteer.create({
+          data: {
+            name: data.name,
+            phone: data.phone,
+            email: data.email ?? null,
+            location: data.location ?? null,
+            role: data.role,
+            message: data.message ?? null,
+          },
+        });
+        id = volunteer.id;
+      } else {
+        const row = await db.$executeRaw`INSERT INTO Volunteer (id, name, phone, email, location, role, message, status, createdAt, updatedAt) VALUES (${crypto.randomUUID()}, ${data.name}, ${data.phone}, ${data.email ?? null}, ${data.location ?? null}, ${data.role}, ${data.message ?? null}, 'signed-up', ${new Date().toISOString()}, ${new Date().toISOString()})`;
+        id = `raw-${row}`;
+      }
+    } catch (dbErr) {
+      console.error("[volunteer POST] DB error:", dbErr);
     }
 
-    // Fire-and-forget notification to staff
-    notifyStaff("volunteer", {
-      id,
+    const emailSent = await notifyStaff("volunteer", {
+      id: id ?? `pending-${Date.now()}`,
       name: data.name,
       phone: data.phone,
       email: data.email ?? "",
@@ -68,7 +71,14 @@ export async function POST(req: Request) {
       message: data.message ?? "",
     });
 
-    return NextResponse.json({ success: true, id }, { status: 201 });
+    if (!id && !emailSent) {
+      return NextResponse.json(
+        { success: false, error: "Server error. Please try again later." },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true, id: id ?? undefined }, { status: 201 });
   } catch (err) {
     console.error("[volunteer POST] error:", err);
     return NextResponse.json(

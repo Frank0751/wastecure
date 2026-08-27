@@ -45,7 +45,7 @@ const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     "offer.eyebrow": "What We Offer",
     "offer.title": "Advanced waste solutions for cleaner communities",
     "offer.subtitle":
-      "We give households, businesses and institutions across the Ashanti Region a real, sustainable option for waste management - backed by education and a recycling-first approach.",
+      "We give households, businesses and institutions across Ghana a real, sustainable option for waste management - backed by education and a recycling-first approach.",
     "services.eyebrow": "Our Services",
     "services.title": "Plastic collection, recycling & advisory",
     "contact.eyebrow": "Contact Us",

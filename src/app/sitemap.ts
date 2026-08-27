@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/sustainability", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/gallery", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/get-involved", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.9, changeFrequency: "monthly" as const },
   ];
