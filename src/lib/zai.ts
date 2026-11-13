@@ -1,43 +1,36 @@
-import ZAI from "z-ai-web-dev-sdk";
+// Minimal client for Z.ai's OpenAI-compatible chat endpoint.
+// glm-4.5-flash is on the free tier; paid models return HTTP 429 on an
+// unfunded account.
 
-/**
- * Returns a configured ZAI client.
- *
- * In development, the SDK reads from a `.z-ai-config` file in the project
- * root or home directory.
- *
- * In production (e.g. Vercel), the config file is not available, so we
- * construct the client from environment variables instead:
- *   - ZAI_API_KEY  (required)
- *   - ZAI_BASE_URL (optional, defaults to the standard endpoint)
- *
- * Falls back to `ZAI.create()` (which reads the config file) if env vars
- * are not set.
- */
-// glm-4.5-flash is available on Z.ai's free tier; paid models (glm-4.5,
-// glm-4-plus, etc.) require a funded account and return HTTP 429 otherwise.
-export const ZAI_MODEL = process.env.ZAI_MODEL || "glm-4.5-flash";
+const BASE_URL = process.env.ZAI_BASE_URL || "https://api.z.ai/api/paas/v4";
+const MODEL = process.env.ZAI_MODEL || "glm-4.5-flash";
 
-let _instance: ZAI | null = null;
+export type ChatMessage = {
+  role: "system" | "user" | "assistant";
+  content: string;
+};
 
-export async function getZai(): Promise<ZAI> {
-  if (_instance) return _instance;
-
+/** Starts a streamed completion and returns the raw SSE response. */
+export async function streamChat(messages: ChatMessage[]): Promise<Response> {
   const apiKey = process.env.ZAI_API_KEY;
-  const baseUrl = process.env.ZAI_BASE_URL || "https://api.z.ai/api/paas/v4";
+  if (!apiKey) throw new Error("ZAI_API_KEY is not configured");
 
-  if (apiKey) {
-    _instance = new ZAI({
-      apiKey,
-      baseUrl,
-      chatId: "",
-      userId: "",
-      token: "",
-    });
-  } else {
-    // Fallback: read from .z-ai-config file (local dev)
-    _instance = await ZAI.create();
+  const res = await fetch(`${BASE_URL}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      messages,
+      stream: true,
+      thinking: { type: "disabled" },
+    }),
+  });
+
+  if (!res.ok || !res.body) {
+    throw new Error(`Z.ai request failed: ${res.status} ${await res.text()}`);
   }
-
-  return _instance;
+  return res;
 }

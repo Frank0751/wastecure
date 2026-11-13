@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { isAdmin, unauthorized } from "@/lib/admin-auth";
 
 export async function GET() {
+  if (!(await isAdmin())) return unauthorized();
   try {
     // Use raw SQL for reliability (dev server may cache an old Prisma client)
     const items = (await db.$queryRaw`SELECT * FROM "Notification" ORDER BY "createdAt" DESC LIMIT 50`) as Array<{
@@ -27,6 +29,7 @@ export async function GET() {
 
 // Mark a notification as read
 export async function PATCH(req: Request) {
+  if (!(await isAdmin())) return unauthorized();
   try {
     const body = await req.json().catch(() => null);
     if (!body?.id) {

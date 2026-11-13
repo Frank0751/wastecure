@@ -9,7 +9,6 @@ import {
   Mail,
   Truck,
   Users,
-  Newspaper,
   MessageSquare,
   Loader2,
   Phone,
@@ -31,7 +30,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-type Tab = "overview" | "contacts" | "pickups" | "volunteers" | "newsletter" | "chat" | "notifications";
+type Tab = "overview" | "contacts" | "pickups" | "volunteers" | "chat" | "notifications";
 
 type AnyRow = Record<string, unknown>;
 
@@ -40,14 +39,9 @@ const TABS: { id: Tab; label: string; icon: typeof Mail; endpoint: string | null
   { id: "contacts", label: "Enquiries", icon: Mail, endpoint: "/api/contact" },
   { id: "pickups", label: "Pickups", icon: Truck, endpoint: "/api/pickup" },
   { id: "volunteers", label: "Volunteers", icon: Users, endpoint: "/api/volunteer" },
-  { id: "newsletter", label: "Newsletter", icon: Newspaper, endpoint: "/api/newsletter" },
   { id: "notifications", label: "Notifications", icon: Bell, endpoint: "/api/notifications" },
   { id: "chat", label: "Chat", icon: MessageSquare, endpoint: "/api/chat" },
 ];
-
-const AUTH_KEY = "wastecure-admin-auth";
-// Demo password - in production this would be validated server-side.
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "wastecure2024";
 
 function fmtDate(v: unknown): string {
   if (!v) return "-";
@@ -85,7 +79,8 @@ export function AdminDashboard({
 }) {
   const [authed, setAuthed] = useState(false);
   const [password, setPassword] = useState("");
-  const [authError, setAuthError] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [signingIn, setSigningIn] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
   const [items, setItems] = useState<AnyRow[]>([]);
   const [loading, setLoading] = useState(false);
@@ -93,40 +88,45 @@ export function AdminDashboard({
   // Stats for overview
   const [stats, setStats] = useState<Record<string, number>>({});
 
-  // Check sessionStorage for existing auth on open
+  // The session lives in an httpOnly cookie, so ask the server whether
+  // this browser is signed in rather than trusting anything client-side.
   useEffect(() => {
-    if (open) {
-      try {
-        if (sessionStorage.getItem(AUTH_KEY) === "1") setAuthed(true);
-      } catch {
-        /* ignore */
-      }
-    }
+    if (!open) return;
+    fetch("/api/admin/session")
+      .then((r) => r.json())
+      .then((d) => setAuthed(Boolean(d?.authed)))
+      .catch(() => setAuthed(false));
   }, [open]);
 
-  const submitAuth = (e: React.FormEvent) => {
+  const submitAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setAuthed(true);
-      setAuthError(false);
-      try {
-        sessionStorage.setItem(AUTH_KEY, "1");
-      } catch {
-        /* ignore */
+    setSigningIn(true);
+    setAuthError(null);
+    try {
+      const res = await fetch("/api/admin/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      if (res.ok) {
+        setAuthed(true);
+        setPassword("");
+      } else {
+        const data = await res.json().catch(() => null);
+        setAuthError(data?.error || "Could not sign in.");
       }
-    } else {
-      setAuthError(true);
+    } catch {
+      setAuthError("Could not reach the server. Try again.");
+    } finally {
+      setSigningIn(false);
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await fetch("/api/admin/session", { method: "DELETE" }).catch(() => null);
     setAuthed(false);
     setPassword("");
-    try {
-      sessionStorage.removeItem(AUTH_KEY);
-    } catch {
-      /* ignore */
-    }
+    setItems([]);
     onOpenChange(false);
   };
 
@@ -186,7 +186,7 @@ export function AdminDashboard({
   // Reset state when dialog closes
   const handleClose = (v: boolean) => {
     if (!v) {
-      setAuthError(false);
+      setAuthError(null);
     }
     onOpenChange(v);
   };
@@ -258,24 +258,21 @@ export function AdminDashboard({
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
-                      setAuthError(false);
+                      setAuthError(null);
                     }}
                     placeholder="Enter password"
                     autoFocus
                   />
                   {authError && (
                     <p className="text-xs text-destructive">
-                      Incorrect password. Please try again.
+                      {authError}
                     </p>
                   )}
                 </div>
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={signingIn || !password}>
                   <Lock className="size-4" />
-                  Unlock dashboard
+                  {signingIn ? "Signing in..." : "Sign in"}
                 </Button>
-                <p className="text-center text-[11px] text-muted-foreground">
-                  Demo password: <code className="rounded bg-muted px-1.5 py-0.5 font-mono">wastecure2024</code>
-                </p>
               </form>
             </div>
           ) : (
@@ -347,9 +344,7 @@ export function AdminDashboard({
                         <div className="mb-3 flex items-start justify-between gap-3">
                           <div className="min-w-0">
                             <h4 className="truncate text-sm font-semibold">
-                              {tab === "newsletter"
-                                ? (row.email as string)
-                                : tab === "notifications"
+                              {tab === "notifications"
                                 ? (row.subject as string) || "Notification"
                                 : (row.name as string) || "-"}
                             </h4>
@@ -358,13 +353,13 @@ export function AdminDashboard({
                                 <Clock className="size-3" />
                                 {fmtDate(row.createdAt)}
                               </span>
-                              {tab === "pickups" && row.phone && (
+                              {tab === "pickups" && !!row.phone && (
                                 <span className="flex items-center gap-1">
                                   <Phone className="size-3" />
                                   {String(row.phone)}
                                 </span>
                               )}
-                              {tab === "pickups" && row.location && (
+                              {tab === "pickups" && !!row.location && (
                                 <span className="flex items-center gap-1">
                                   <MapPin className="size-3" />
                                   {String(row.location)}
@@ -372,7 +367,7 @@ export function AdminDashboard({
                               )}
                             </div>
                           </div>
-                          {row.status && (
+                          {!!row.status && (
                             <Badge variant="secondary" className="shrink-0 capitalize">
                               {String(row.status)}
                             </Badge>
@@ -405,21 +400,18 @@ export function AdminDashboard({
                               <Cell label="Role" value={row.role} />
                             </>
                           )}
-                          {tab === "newsletter" && (
-                            <Cell label="Name" value={row.name} />
-                          )}
                         </dl>
-                        {tab === "contacts" && row.message && (
+                        {tab === "contacts" && !!row.message && (
                           <p className="mt-3 rounded-lg bg-muted/50 p-3 text-sm text-foreground/90">
                             {String(row.message)}
                           </p>
                         )}
-                        {tab === "pickups" && row.notes && (
+                        {tab === "pickups" && !!row.notes && (
                           <p className="mt-3 rounded-lg bg-muted/50 p-3 text-sm text-foreground/90">
                             {String(row.notes)}
                           </p>
                         )}
-                        {tab === "volunteers" && row.message && (
+                        {tab === "volunteers" && !!row.message && (
                           <p className="mt-3 rounded-lg bg-muted/50 p-3 text-sm text-foreground/90">
                             {String(row.message)}
                           </p>
@@ -437,7 +429,7 @@ export function AdminDashboard({
                             <div className="flex items-center gap-2 text-xs text-muted-foreground">
                               <Mail className="size-3" />
                               To: {String(row.to || row["to"] || "-")}
-                              {row.type && (
+                              {!!row.type && (
                                 <Badge variant="outline" className="capitalize">
                                   {String(row.type)}
                                 </Badge>
@@ -472,7 +464,6 @@ function OverviewTab({
     { key: "/api/contact", label: "Enquiries", icon: Mail, color: "text-leaf-500" },
     { key: "/api/pickup", label: "Pickup Requests", icon: Truck, color: "text-amber-earth" },
     { key: "/api/volunteer", label: "Volunteers", icon: Users, color: "text-leaf-400" },
-    { key: "/api/newsletter", label: "Newsletter Subs", icon: Newspaper, color: "text-clay" },
     { key: "/api/notifications", label: "Notifications", icon: Bell, color: "text-amber-earth" },
     { key: "/api/chat", label: "Chat Messages", icon: MessageSquare, color: "text-forest-500" },
   ];
@@ -500,10 +491,6 @@ function OverviewTab({
                 transition={{ duration: 0.3, delay: i * 0.06 }}
                 className="relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm"
               >
-                <div
-                  aria-hidden
-                  className="absolute -right-4 -top-4 size-20 rounded-full bg-primary/5 blur-2xl"
-                />
                 <div className="relative flex items-start justify-between">
                   <div>
                     <div className="text-3xl font-bold tabular-nums text-foreground">

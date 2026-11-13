@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import { isAdmin, unauthorized } from "@/lib/admin-auth";
 import { notifyStaff } from "@/lib/notify";
 
 const schema = z.object({
@@ -95,6 +96,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
+  if (!(await isAdmin())) return unauthorized();
   try {
     const items = await db.contactSubmission.findMany({
       orderBy: { createdAt: "desc" },
