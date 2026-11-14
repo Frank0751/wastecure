@@ -6,12 +6,12 @@ import {
   MessageCircle,
   X,
   Send,
-  Sparkles,
   Loader2,
   RotateCcw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SITE } from "@/lib/site-data";
 
 type ChatMsg = {
   id: string;
@@ -106,7 +106,6 @@ export function Chatbot() {
   const [messages, setMessages] = useState<ChatMsg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [bumped, setBumped] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Greeting on first open
@@ -123,11 +122,6 @@ export function Chatbot() {
     }
   }, [messages, loading]);
 
-  // Pulse badge to draw attention after a delay
-  useEffect(() => {
-    const t = setTimeout(() => setBumped(true), 4500);
-    return () => clearTimeout(t);
-  }, []);
 
   const send = async (text: string) => {
     const trimmed = text.trim();
@@ -202,7 +196,7 @@ export function Chatbot() {
               ? {
                   ...m,
                   content:
-                    "Sorry, I couldn't respond right now. Please call us on +233 20 397 0216 or use the contact form.",
+                    `Sorry, I couldn't respond right now. Please call us on ${SITE.phone} or use the contact form.`,
                 }
               : m
           )
@@ -215,7 +209,7 @@ export function Chatbot() {
             ? {
                 ...m,
                 content:
-                  "I'm having trouble connecting. Please try again or call us on +233 20 397 0216.",
+                  `I'm having trouble connecting. Please try again or call us on ${SITE.phone}.`,
               }
             : m
         )
@@ -243,18 +237,11 @@ export function Chatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={() => {
               setOpen(true);
-              setBumped(false);
             }}
             aria-label="Open WasteCure chat assistant"
-            className={cn(
-              "fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl ring-4 ring-background hover:bg-primary/90 transition-colors",
-              bumped && "animate-bounce"
-            )}
+            className="fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl ring-4 ring-background hover:bg-primary/90 transition-colors"
           >
             <MessageCircle className="size-6" />
-            <span className="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-leaf-500 text-[10px] font-bold text-white ring-2 ring-background">
-              1
-            </span>
           </motion.button>
         )}
       </AnimatePresence>
@@ -271,18 +258,15 @@ export function Chatbot() {
             className="fixed bottom-5 right-5 z-50 flex h-[560px] max-h-[calc(100dvh-2.5rem)] w-[calc(100%-2.5rem)] max-w-[400px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between gap-3 bg-gradient-to-br from-forest-700 to-forest-900 p-4 text-white">
+            <div className="flex items-center justify-between gap-3 bg-forest-900 p-4 text-white">
               <div className="flex items-center gap-3">
-                <div className="relative">
-                  <Sparkles className="size-5 text-leaf-400" />
-                  <span className="absolute -bottom-0.5 -right-0.5 size-3 rounded-full bg-leaf-400 ring-2 ring-forest-800" />
-                </div>
+                <MessageCircle className="size-5 text-leaf-400" />
                 <div>
                   <div className="text-sm font-semibold leading-tight">
                     WasteCure Assistant
                   </div>
                   <div className="text-xs text-forest-100/70">
-                    Online · replies instantly
+                    Automated answers about our services
                   </div>
                 </div>
               </div>
@@ -335,9 +319,9 @@ export function Chatbot() {
                     >
                       {isStreamingEmpty ? (
                         <div className="flex items-center gap-1.5 py-0.5">
-                          <span className="size-2 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:-0.3s]" />
-                          <span className="size-2 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:-0.15s]" />
-                          <span className="size-2 animate-bounce rounded-full bg-muted-foreground/50" />
+                          <span className="size-2 animate-pulse rounded-full bg-muted-foreground/50 [animation-delay:-0.3s]" />
+                          <span className="size-2 animate-pulse rounded-full bg-muted-foreground/50 [animation-delay:-0.15s]" />
+                          <span className="size-2 animate-pulse rounded-full bg-muted-foreground/50" />
                         </div>
                       ) : (
                         <span className="whitespace-pre-wrap">{m.content}</span>
@@ -420,7 +404,7 @@ export function Chatbot() {
               </Button>
             </form>
             <p className="bg-card px-3 pb-2 text-center text-[10px] text-muted-foreground">
-              Powered by WasteCure AI · For bookings, use the contact form
+              This is an AI assistant and can be wrong. For bookings, use the contact form.
             </p>
           </motion.div>
         )}

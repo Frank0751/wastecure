@@ -43,8 +43,7 @@ yarn-error.log*
 prisma/dev.db
 prisma/dev.db-journal
 
-# this project uses bun.lock; ignore npm's lockfile if generated locally
-package-lock.json
+
 
 
 # typescript

@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/select";
 import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
-import { REAL_PHOTOS } from "@/lib/site-data";
+import { PHOTOS } from "@/lib/photos";
+import { SITE } from "@/lib/site-data";
 
 const WAYS_TO_HELP = [
   {
@@ -88,7 +89,7 @@ export default function GetInvolvedPage() {
       setMessage("");
     } catch {
       toast.error("Could not submit", {
-        description: "Please try again or call us on +233 20 397 0216.",
+        description: `Please try again or call us on ${SITE.phone}.`,
       });
     } finally {
       setSubmitting(false);
@@ -98,15 +99,14 @@ export default function GetInvolvedPage() {
   return (
     <>
       <PageHeader
-        title="Get Involved"
-        subtitle="Partnerships power lasting change. Whether you run a school, a business, or a community group - there is a way to work with WasteCure."
-        image={REAL_PHOTOS.communityMeeting}
+        title="Get involved"
+        subtitle="Whether you run a school, a business or a community group, there is a way to work with WasteCure."
+        photo={PHOTOS.crewBriefing}
       />
 
       {/* Three ways to help - text cards, icons inline (no badge containers) */}
       <section className="relative bg-background py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-leaf-pattern opacity-50" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Partnership sign-up form */}
-      <section className="relative bg-gradient-to-br from-forest-50/50 via-background to-leaf-50/30 py-20 md:py-24">
+      <section className="bg-muted/40 py-20 md:py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -159,10 +159,6 @@ export default function GetInvolvedPage() {
             transition={{ duration: 0.6 }}
             className="relative overflow-hidden rounded-3xl border border-primary/20 bg-card p-6 md:p-8 shadow-lg"
           >
-            <div
-              aria-hidden
-              className="absolute -top-12 -right-12 size-40 rounded-full bg-leaf-500/15 blur-2xl"
-            />
             <div className="relative">
               <h2 className="text-2xl font-bold text-foreground">Partner with us</h2>
               <p className="mt-1 text-sm text-muted-foreground">

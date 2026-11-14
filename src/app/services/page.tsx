@@ -5,7 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
 import { Reveal } from "@/components/site/reveal";
-import { SERVICES, PROCESS_STEPS, REAL_PHOTOS } from "@/lib/site-data";
+import { SERVICES, PROCESS_STEPS } from "@/lib/site-data";
+import { PHOTOS } from "@/lib/photos";
+import { Photo } from "@/components/site/photo";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
@@ -79,9 +81,10 @@ export default function ServicesPage() {
   return (
     <>
       <PageHeader
-        title="Our Services"
-        subtitle="From waste collection and recycling to cleaning services and consultancy, our services are designed to keep communities clean and support a circular economy across Ghana."
-        image={REAL_PHOTOS.streetCrew}
+        title="Our services"
+        subtitle="Waste collection, recycling, cleaning services and consultancy for households, businesses, schools and assemblies."
+        photo={PHOTOS.streetBriefing}
+        focus="50% 30%"
       />
 
       {/* 4 service sections with alternating layout */}
@@ -94,20 +97,18 @@ export default function ServicesPage() {
                 <Reveal
                   key={service.id}
                   id={service.id}
-                  y={32}
                   className={cn(
                     "grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2 scroll-mt-24"
                   )}
                 >
                   <div className={cn("relative", reverse && "lg:order-2")}>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="size-full object-cover transition-transform duration-500 hover:scale-105"
-                        loading="lazy"
+                    <div className="aspect-[4/3] overflow-hidden rounded-xl bg-muted">
+                      <Photo
+                        id={service.photo}
+                        alt={service.photoAlt}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="size-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-forest-900/30 to-transparent" />
                     </div>
                   </div>
 
@@ -115,9 +116,6 @@ export default function ServicesPage() {
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
                       {service.title}
                     </h2>
-                    <p className="mt-2 text-base text-leaf-600 font-medium italic">
-                      {service.short}
-                    </p>
                     <p className="mt-4 text-base text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
@@ -142,9 +140,6 @@ export default function ServicesPage() {
                           Request this service
                           <ArrowRight className="size-4" />
                         </Link>
-                      </Button>
-                      <Button asChild size="sm" variant="ghost">
-                        <Link href="/sustainability">Learn about our impact</Link>
                       </Button>
                     </div>
                   </div>

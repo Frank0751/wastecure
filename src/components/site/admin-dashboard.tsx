@@ -196,7 +196,7 @@ export function AdminDashboard({
       <DialogContent className="max-h-[92vh] overflow-hidden p-0 sm:max-w-4xl">
         <div className="flex h-[80vh] flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between gap-3 border-b border-border bg-gradient-to-r from-forest-700 to-forest-900 px-5 py-4 text-white">
+          <div className="flex items-center justify-between gap-3 border-b border-border bg-forest-900 px-5 py-4 text-white">
             <div className="flex items-center gap-3">
               <div className="flex size-9 items-center justify-center rounded-lg bg-leaf-500/20 ring-1 ring-leaf-400/40">
                 <LayoutDashboard className="size-5 text-leaf-400" />

@@ -1,9 +1,6 @@
-// Blog articles with authentic, well-referenced content.
-// Sources cited at the end of each article.
-// All images are real photographs, either sourced from news/NGO/stock
-// libraries or WasteCure's own field photography (REAL_PHOTOS).
+// Blog articles. Photos are WasteCure's own; sources are listed per article.
 
-import { REAL_PHOTOS } from "@/lib/site-data";
+import { PHOTOS } from "@/lib/photos";
 
 export type Article = {
   slug: string;
@@ -13,11 +10,20 @@ export type Article = {
   readTime: string;
   date: string;
   author: string;
-  image: string;
-  imageSource: string;
+  /** Cloudinary photo id from PHOTOS. */
+  photo: string;
   body: { heading?: string; text: string }[];
   sources: { title: string; url: string; publisher: string }[];
 };
+
+export function formatArticleDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
 
 export const ARTICLES: Article[] = [
   {
@@ -29,11 +35,10 @@ export const ARTICLES: Article[] = [
     readTime: "5 min read",
     date: "2024-06-15",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/946eff62dbb8.jpeg",
-    imageSource: "Mongabay",
+    photo: PHOTOS.wheelbarrow,
     body: [
       {
-        text: "Plastic waste is one of the biggest environmental challenges in Ghana. According to the United Nations Environment Programme (UNEP), Ghana generates approximately 1.7 million tonnes of plastic waste each year, of which only about 5% is recycled. The good news is that a little sorting at home makes a huge difference: properly sorted plastic is far more likely to be recycled than mixed waste.",
+        text: "Plastic waste is one of the biggest environmental challenges in Ghana. A 2023 UNDP report puts Ghana's plastic waste at about 1.1 million tonnes a year, of which only around 5% is recycled. The good news is that a little sorting at home makes a huge difference: properly sorted plastic is far more likely to be recycled than mixed waste.",
       },
       {
         heading: "The seven plastic types",
@@ -41,11 +46,11 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Setting up a home sorting system",
-        text: "Start with three simple bins or sacks at home: one for PET bottles, one for HDPE containers, and one for soft plastics (LDPE). Rinse out bottles before storing them. Clean plastic is worth more to recyclers and avoids attracting pests. According to a report by the Ghana Plastic Waste Management Policy, proper sorting at source can increase recycling rates by up to 40%.",
+        text: "Start with three simple bins or sacks at home: one for PET bottles, one for HDPE containers, and one for soft plastics (LDPE). Rinse out bottles before storing them. Clean plastic is worth more to recyclers and avoids attracting pests.",
       },
       {
         heading: "What happens after collection",
-        text: "Once your sacks are full, bring them to a WasteCure drop-off point in Kwabre East, or request a pickup. The plastic is then sorted further, baled, and sent to recycling off-takers who process it into new products. This closed-loop system is what keeps plastic out of drains, gutters and landfills.",
+        text: "Once your sacks are full, bring them to a WasteCure collection point, or request a pickup. The plastic is then sorted further, baled, and sent to recycling off-takers who process it into new products. This closed-loop system is what keeps plastic out of drains, gutters and landfills.",
       },
       {
         heading: "Common mistakes to avoid",
@@ -54,19 +59,19 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "Ghana Plastic Waste Management Policy",
-        url: "https://www.epa.gov.gh/resources/publications",
-        publisher: "Environmental Protection Agency, Ghana",
+        title: "Plastic waste in Ghana: Accelerator Lab experiment report (2023)",
+        url: "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp_ghana_acclab_plastic_experiment_2023_report.pdf",
+        publisher: "UNDP Ghana",
       },
       {
-        title: "Single-use plastics and the path to a circular economy in Ghana",
-        url: "https://www.unep.org/news-and-stories/story",
-        publisher: "UNEP",
+        title: "Resin identification codes (ASTM D7611)",
+        url: "https://blog.ansi.org/ansi/resin-identification-codes-rics-astm-d7611/",
+        publisher: "ANSI",
       },
       {
-        title: "Plastic waste management in Ghana: a review",
-        url: "https://www.sciencedirect.com/science/article/pii/S2666678X21000123",
-        publisher: "ScienceDirect (Journal of Environmental Management)",
+        title: "Revised National Plastics Management Policy",
+        url: "https://mesti.gov.gh/documents/revised-national-plastics-management-policy.pdf",
+        publisher: "Ministry of Environment, Science, Technology and Innovation, Ghana",
       },
     ],
   },
@@ -79,15 +84,14 @@ export const ARTICLES: Article[] = [
     readTime: "4 min read",
     date: "2024-05-28",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/484f11e98af4.jpg",
-    imageSource: "DW.com",
+    photo: PHOTOS.duskSweep,
     body: [
       {
         text: "Burning plastic waste is a common practice in many Ghanaian communities, particularly in areas without formal collection services. But it comes with serious hidden costs. When plastic burns, it releases toxic chemicals including dioxins, furans, polychlorinated biphenyls (PCBs), and heavy metals into the air you breathe.",
       },
       {
         heading: "Health impacts",
-        text: "According to the World Health Organisation (WHO), exposure to smoke from burning plastic is linked to respiratory problems, skin conditions, eye irritation, and long-term illnesses including cancer. Children, who are often nearby when waste is burned, are especially vulnerable. A study published in the Lancet Planetary Health found that indoor and outdoor air pollution, including from waste burning, contributes to millions of premature deaths globally each year.",
+        text: "Peer-reviewed research links exposure to smoke from openly burned plastic waste to respiratory illness and other long-term health harms. Children, who are often nearby when waste is burned, are especially vulnerable. A 2022 review in The Lancet Planetary Health estimated that pollution causes about nine million premature deaths a year worldwide, most of them from air pollution.",
       },
       {
         heading: "Environmental damage",
@@ -100,19 +104,24 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "Household air pollution and health",
-        url: "https://www.who.int/news-room/fact-sheets/detail/household-air-pollution-and-health",
-        publisher: "World Health Organisation (WHO)",
+        title: "Open burning (plastics toolkit glossary)",
+        url: "https://leap.unep.org/en/knowledge/toolkits/plastic/glossary/open-burning",
+        publisher: "UNEP",
       },
       {
-        title: "Health and environmental impacts of open waste burning",
-        url: "https://www.thelancet.com/journals/lanplh/home",
+        title: "Open burning of plastic waste: health effects review",
+        url: "https://annalsofglobalhealth.org/articles/10.5334/aogh.4232",
+        publisher: "Annals of Global Health",
+      },
+      {
+        title: "Pollution and health: a progress update (2022)",
+        url: "https://www.unccd.int/resources/unccd-library/lancet-planetary-health-pollution-and-health-progress-update",
         publisher: "The Lancet Planetary Health",
       },
       {
-        title: "Air quality in Ghana",
-        url: "https://www.epa.gov.gh/",
-        publisher: "Ghana Environmental Protection Agency",
+        title: "Refrain from open burning of waste for quality air",
+        url: "https://gna.org.gh/2023/09/refrain-from-open-burning-of-waste-for-quality-air/",
+        publisher: "Ghana News Agency",
       },
     ],
   },
@@ -125,31 +134,30 @@ export const ARTICLES: Article[] = [
     readTime: "6 min read",
     date: "2024-05-10",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ab77953b588d.jpeg",
-    imageSource: "Yen News",
+    photo: PHOTOS.skipLoading,
     body: [
       {
         text: "Plastic pollution is one of Ghana's most visible environmental problems. From choked gutters in Accra to plastic-lined beaches in Cape Coast, the scale of the challenge is clear. But behind the visible waste are some important numbers that help explain why action is so urgent.",
       },
       {
-        heading: "1. Ghana generates over 1.7 million tonnes of plastic waste annually",
-        text: "According to UNEP, Ghana generates approximately 1.7 million tonnes of plastic waste each year. Of this, only about 5% is currently recycled. The remainder ends up in landfills, drains, waterways, or is burned.",
+        heading: "1. Ghana generates about 1.1 million tonnes of plastic waste a year",
+        text: "A 2023 UNDP report estimates Ghana's plastic waste at about 1.1 million tonnes a year. Only around 5% of it is recycled. The remainder ends up in landfills, drains, waterways, or is burned.",
       },
       {
         heading: "2. Only 5% of plastic is recycled",
-        text: "A report by the World Bank found that Ghana's recycling rate is among the lowest in West Africa. The vast majority of plastic waste is not collected or processed, despite the existence of a growing recycling industry.",
+        text: "That figure comes from the same UNDP report. The vast majority of plastic waste is not collected or processed, despite the existence of a growing recycling industry.",
       },
       {
-        heading: "3. Ghana is a top contributor to ocean plastic in Africa",
-        text: "Research published in Science Advances identified Ghana among the top African countries contributing to ocean plastic pollution. The Volta and Ankobra rivers are among the rivers carrying the most plastic to the sea, according to a study by The Ocean Cleanup.",
+        heading: "3. Ghana's rivers carry thousands of tonnes of plastic to the sea",
+        text: "A 2021 study in Science Advances modelled how much plastic rivers carry into the ocean. Its data puts Ghana at roughly 4,000 tonnes a year, among the higher figures in Africa.",
       },
       {
         heading: "4. Plastic blocks drains and causes flooding",
-        text: "During the rainy season, plastic waste clogs gutters and drainage systems across Ghanaian cities. The Ghana Meteorological Agency and the National Disaster Management Organisation (NADMO) have linked plastic-choked drains to repeated flooding in Accra, Kumasi and other urban centres.",
+        text: "During the rainy season, plastic waste clogs gutters and drainage systems across Ghanaian cities. Officials at the Ghana Meteorological Agency and the National Disaster Management Organisation (NADMO) have repeatedly warned that choked drains worsen flooding in Accra and Kumasi.",
       },
       {
         heading: "5. The economic cost is significant",
-        text: "A World Bank study estimated that the cost of environmental degradation in Ghana amounts to approximately 10% of GDP. Plastic waste management, flooding damage, and health impacts from burning all contribute to this cost.",
+        text: "The World Bank's 2020 Country Environmental Analysis put the cost of environmental degradation in Ghana at US$6.3 billion a year, close to 11% of GDP. Air pollution is the largest part of that bill, and poorly managed waste adds to it.",
       },
       {
         heading: "6. Recycling creates jobs",
@@ -157,29 +165,34 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "7. Change is possible",
-        text: "Communities across Ghana are taking action. From municipal bans on single-use plastics to community clean-ups and recycling enterprises like WasteCure, the momentum is building. Every kilogram of plastic diverted from the environment is a step toward a cleaner Ghana.",
+        text: "Communities across Ghana are taking action. From community clean-ups to recycling enterprises like WasteCure, the momentum is building. Every kilogram of plastic diverted from the environment is a step toward a cleaner Ghana.",
       },
     ],
     sources: [
       {
-        title: "Ghana State of the Environment Report",
-        url: "https://www.unep.org/regions/africa/our-work/environmental-assessments",
-        publisher: "UNEP",
+        title: "Plastic waste in Ghana: Accelerator Lab experiment report (2023)",
+        url: "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp_ghana_acclab_plastic_experiment_2023_report.pdf",
+        publisher: "UNDP Ghana",
       },
       {
-        title: "What a Waste 2.0: A Global Snapshot of Solid Waste Management to 2050",
-        url: "https://openknowledge.worldbank.org/handle/10986/2175",
+        title: "Plastic waste emitted to the ocean (data from Meijer et al., Science Advances, 2021)",
+        url: "https://ourworldindata.org/grapher/plastic-waste-emitted-to-the-ocean",
+        publisher: "Our World in Data",
+      },
+      {
+        title: "Clear choked drains, widen waterways - Meteo warns",
+        url: "https://www.myjoyonline.com/clear-choked-drains-widen-waterways-meteo-warns/",
+        publisher: "MyJoyOnline",
+      },
+      {
+        title: "Ghana Country Environmental Analysis (2020)",
+        url: "https://openknowledge.worldbank.org/entities/publication/84fe1427-4233-5b67-ace4-d41bf11d652c",
         publisher: "World Bank",
       },
       {
-        title: "More than 1000 rivers account for 80% of global riverine plastic emissions",
-        url: "https://www.science.org/doi/10.1126/sciadv.aaz5803",
-        publisher: "Science Advances (The Ocean Cleanup)",
-      },
-      {
-        title: "The cost of environmental degradation in Ghana",
-        url: "https://documents.worldbank.org/en/publication/documents-reports",
-        publisher: "World Bank",
+        title: "How data is helping Ghana fight plastic pollution",
+        url: "https://www.weforum.org/stories/2023/05/data-benefits-ghana-fight-against-plastic-pollution/",
+        publisher: "World Economic Forum",
       },
     ],
   },
@@ -192,11 +205,10 @@ export const ARTICLES: Article[] = [
     readTime: "5 min read",
     date: "2024-04-20",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b00d778a707f.jpg",
-    imageSource: "The Cool Down",
+    photo: PHOTOS.skipHeadPan,
     body: [
       {
-        text: "Food and garden waste make up a large share of household rubbish in Ghana. According to the World Bank's What a Waste 2.0 report, organic waste accounts for approximately 40-50% of municipal solid waste in low and middle-income countries. Unlike plastic, this waste does not need to go anywhere. With a simple compost setup, you can turn it into rich compost for your garden or pots.",
+        text: "Food and garden waste make up a large share of household rubbish in Ghana. According to the World Bank's What a Waste 2.0 report, food and green waste makes up more than half of municipal solid waste in low and middle-income countries. Unlike plastic, this waste does not need to go anywhere. With a simple compost setup, you can turn it into rich compost for your garden or pots.",
       },
       {
         heading: "What you need",
@@ -208,7 +220,7 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Maintaining your compost",
-        text: "Keep your compost moist but not wet. It should feel like a wrung-out sponge. Turn it every week or two with a stick to let air in. According to the Food and Agriculture Organisation (FAO), well-managed compost can be ready in 2 to 4 months in warm climates like Ghana's.",
+        text: "Keep your compost moist but not wet. It should feel like a wrung-out sponge. Turn it every week or two with a stick to let air in. The FAO's guide to on-farm composting describes methods that produce finished compost in two to four months.",
       },
       {
         heading: "Using your compost",
@@ -218,59 +230,18 @@ export const ARTICLES: Article[] = [
     sources: [
       {
         title: "What a Waste 2.0: A Global Snapshot of Solid Waste Management to 2050",
-        url: "https://openknowledge.worldbank.org/handle/10986/2175",
+        url: "https://hdl.handle.net/10986/30317",
         publisher: "World Bank",
       },
       {
-        title: "Composting for sustainable agriculture",
-        url: "https://www.fao.org/land-water/land/land-governance/land-resources-planning/en/",
-        publisher: "Food and Agriculture Organisation (FAO)",
+        title: "On-farm composting methods",
+        url: "https://www.fao.org/4/y5104e/y5104e05.htm",
+        publisher: "Food and Agriculture Organization (FAO)",
       },
       {
-        title: "Home composting guide",
+        title: "Composting at home",
         url: "https://www.epa.gov/recycle/composting-home",
         publisher: "US Environmental Protection Agency",
-      },
-    ],
-  },
-  {
-    slug: "community-cleanup-kwabre-east",
-    title: "Community clean-up in Kwabre East: what we achieved together",
-    excerpt:
-      "Our recent community cleanup drive brought together volunteers from across the municipality. Here is what we collected and what happens next.",
-    category: "Community",
-    readTime: "3 min read",
-    date: "2024-04-05",
-    author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3a49c8839aab.jpg",
-    imageSource: "EEAS - European Union",
-    body: [
-      {
-        text: "Our recent community cleanup drive in Kwabre East was a powerful reminder of what is possible when neighbours come together. Volunteers from Mamponteng, Asonomaso and Antoa joined our field team for a morning of collection and sorting along major streets and around the market.",
-      },
-      {
-        heading: "What we collected",
-        text: "Together, we removed a significant volume of plastic from streets, drains and public spaces. The material included PET bottles, plastic bags, food packaging, and other recyclable items. Every piece collected is now being sorted and channelled to recyclers rather than ending up in a landfill or being burned.",
-      },
-      {
-        heading: "More than just plastic",
-        text: "But the cleanup was about more than just plastic. It was a chance to talk with residents about waste, answer questions, and sign up new volunteers. The energy and commitment we saw gives us real hope for the future of our municipality. Community-led action is at the heart of WasteCure's model.",
-      },
-      {
-        heading: "What happens next",
-        text: "We will be running more cleanups in the coming months, targeting different areas across Kwabre East. If you would like to take part, sign up through our Get Involved page, or follow us on Instagram for announcements. Together, we can keep our community clean.",
-      },
-    ],
-    sources: [
-      {
-        title: "Community-based solid waste management in Ghana",
-        url: "https://www.unep.org/regions/africa",
-        publisher: "UNEP Africa",
-      },
-      {
-        title: "Kwabre East Municipal Assembly",
-        url: "https://www.ghanadistricts.com/Home/District/125",
-        publisher: "Ghana Districts",
       },
     ],
   },
@@ -283,19 +254,18 @@ export const ARTICLES: Article[] = [
     readTime: "6 min read",
     date: "2024-03-15",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8cd1b6916cfd.jpeg",
-    imageSource: "Pexels",
+    photo: PHOTOS.wheelbarrow,
     body: [
       {
         text: "The circular economy is a simple idea with big implications. Instead of the traditional linear model of take, make, and dispose, a circular economy keeps materials in use for as long as possible, extracts maximum value from them while in use, then recovers and regenerates products at the end of their life. For Ghana, this shift could transform how we handle waste.",
       },
       {
         heading: "The problem with the linear model",
-        text: "Ghana's current waste system is largely linear. Raw materials are extracted, products are manufactured, used, and then discarded. According to the African Circular Economy Network (ACEN), less than 10% of materials used in most African economies are circular. The rest becomes waste, much of it plastic that ends up in drains, rivers, and the ocean.",
+        text: "Ghana's current waste system is largely linear. Raw materials are extracted, products are manufactured, used, and then discarded. Globally, only about 7% of the materials the economy uses are cycled back into use, according to Circle Economy's Circularity Gap Report. The rest becomes waste, much of it plastic that ends up in drains, rivers, and the ocean.",
       },
       {
         heading: "What a circular economy looks like",
-        text: "In a circular economy, waste is designed out from the start. Products are made to be reused, repaired, and recycled. Plastic bottles are collected, sorted, and processed into new bottles or other products. Organic waste is composted and returned to the soil. According to the Ellen MacArthur Foundation, transitioning to a circular economy could generate $4.5 trillion in economic output globally by 2030.",
+        text: "In a circular economy, waste is designed out from the start. Products are made to be reused, repaired, and recycled. Plastic bottles are collected, sorted, and processed into new bottles or other products. Organic waste is composted and returned to the soil. Research by Accenture estimated that moving to a circular economy could unlock $4.5 trillion in economic growth globally by 2030.",
       },
       {
         heading: "Ghana's circular economy opportunity",
@@ -308,60 +278,19 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "African Circular Economy Alliance",
-        url: "https://www.acen.africa/",
-        publisher: "African Circular Economy Network (ACEN)",
+        title: "African Development Bank on the Circularity Gap Report",
+        url: "https://www.afdb.org/en/news-and-events/united-nations-environment-assembly-african-development-bank-urges-action-promote-inclusive-production-and-consumption-within-planetary-limits-69057",
+        publisher: "African Development Bank",
       },
       {
-        title: "Towards the circular economy: Economic and business rationale",
-        url: "https://www.ellenmacarthurfoundation.org/",
-        publisher: "Ellen MacArthur Foundation",
+        title: "The circular economy could unlock $4.5 trillion of economic growth",
+        url: "https://newsroom.accenture.com/news/the-circular-economy-could-unlock-4-5-trillion-of-economic-growth-finds-new-book-by-accenture.htm",
+        publisher: "Accenture",
       },
       {
-        title: "Ghana National Plastic Action Partnership",
-        url: "https://www.weforum.org/projects/global-plastic-action-partnership",
+        title: "How data is helping Ghana fight plastic pollution",
+        url: "https://www.weforum.org/stories/2023/05/data-benefits-ghana-fight-against-plastic-pollution/",
         publisher: "World Economic Forum",
-      },
-    ],
-  },
-  {
-    slug: "school-recycling-education-programme",
-    title: "Teaching the next generation: our school recycling programme",
-    excerpt:
-      "WasteCure is visiting schools across Kwabre East to teach children about plastic waste. Here is what the programme covers and how to invite us.",
-    category: "News",
-    readTime: "3 min read",
-    date: "2024-03-01",
-    author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eb84b728d2fc.jpg",
-    imageSource: "Humana People To People",
-    body: [
-      {
-        text: "We are excited to announce the launch of our school recycling education programme. Starting this term, WasteCure is visiting basic schools across Kwabre East to run interactive sessions on plastic waste and recycling. The programme is designed to be hands-on, age-appropriate, and practical.",
-      },
-      {
-        heading: "What the programme covers",
-        text: "The sessions cover what plastic is, why it is a problem for our communities, how to identify different plastic types, how to sort plastic at home and at school, and what happens to recycled plastic. Each session includes practical activities so children can touch, sort, and learn by doing. According to UNESCO, environmental education at a young age is one of the most effective ways to build long-term sustainable behaviour.",
-      },
-      {
-        heading: "Why schools matter",
-        text: "Children are powerful messengers. When they learn about recycling at school, they bring those habits home and often teach their parents along the way. This is how lasting change begins. A study by the Journal of Environmental Education found that environmental education programmes in schools can increase household recycling rates by up to 25%.",
-      },
-      {
-        heading: "How to invite us",
-        text: "If you are a teacher, headteacher, or PTA member and would like WasteCure to visit your school, please reach out through our Contact page. There is no charge for the programme. We bring all materials and can tailor sessions to different age groups, from kindergarten to junior high school.",
-      },
-    ],
-    sources: [
-      {
-        title: "Education for Sustainable Development",
-        url: "https://en.unesco.org/themes/education-sustainable-development",
-        publisher: "UNESCO",
-      },
-      {
-        title: "The impact of school-based environmental education on household recycling",
-        url: "https://www.tandfonline.com/journals/veee20",
-        publisher: "Journal of Environmental Education",
       },
     ],
   },
@@ -374,8 +303,7 @@ export const ARTICLES: Article[] = [
     readTime: "5 min read",
     date: "2024-02-15",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f2c1e042cbd4.jpg",
-    imageSource: "Alamy",
+    photo: PHOTOS.skipHeadPan,
     body: [
       {
         text: "There are many misconceptions about recycling in Ghana. These myths can discourage people from participating, even when they want to do the right thing. Let us address five of the most common ones.",
@@ -386,7 +314,7 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "Myth 2: One person's recycling will not matter",
-        text: "It does. A single household can divert hundreds of bottles per month. Multiplied across a community, the impact is enormous. According to the EPA, recycling one tonne of plastic saves approximately 5,774 kWh of energy, 16.3 barrels of oil, and 30 cubic yards of landfill space. Every kilogram counts.",
+        text: "It does. A single household can divert hundreds of bottles per month. Multiplied across a community, the impact is enormous. Every kilogram counts.",
       },
       {
         heading: "Myth 3: Rinsing plastic is a waste of water",
@@ -403,14 +331,9 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "Recycling facts and figures",
-        url: "https://www.epa.gov/smm/recycling-facts-and-figures",
-        publisher: "US Environmental Protection Agency",
-      },
-      {
-        title: "Ghana's plastic recycling industry",
-        url: "https://www.ghanaweb.com/GhanaHomePage/business/",
-        publisher: "GhanaWeb",
+        title: "Resin identification codes (ASTM D7611)",
+        url: "https://blog.ansi.org/ansi/resin-identification-codes-rics-astm-d7611/",
+        publisher: "ANSI",
       },
       {
         title: "Waste Framework Directive",
@@ -428,37 +351,25 @@ export const ARTICLES: Article[] = [
     readTime: "4 min read",
     date: "2025-11-10",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/fc2dd5487aff.jpg",
-    imageSource: "Atlas Volunteers",
+    photo: PHOTOS.group,
     body: [
       {
-        text: "It is easy to talk about waste management in the abstract - tonnes, percentages, targets. We would rather show our actual numbers, however modest, because they represent real collection routes, real volunteers, and real communities choosing not to dump or burn their waste.",
+        text: "It is easy to talk about waste management in the abstract - tonnes, percentages, targets. We would rather show our actual numbers, however modest, because they represent real collection routes, real people, and real communities choosing not to dump or burn their waste.",
       },
       {
         heading: "144 tricycle loads and counting",
         text: "To date, WasteCure has collected about 144 tricycle loads of waste from homes, businesses and public spaces - and the count keeps growing every week. Each load represents waste that did not end up blocking a drain, polluting a water source, or being burned in someone's backyard.",
       },
       {
-        heading: "One district, five communities, twenty volunteers",
-        text: "Our current coverage is the Afigya Kwabre South district, reaching about five communities along the Afrancho to Kodie stretch. Around 20 volunteers support our clean-up drives and community engagement work - a small but committed team that keeps growing as more people see the results.",
+        heading: "One district, five communities, twenty people",
+        text: "Our current coverage is the Afigya Kwabre South district, reaching about five communities along the Afrancho to Kodie stretch. About 20 people work on our clean-up crews, a small but committed team.",
       },
       {
         heading: "Why we publish these numbers",
-        text: "Generic claims do not build trust. We would rather tell you exactly where we are today - one district, a handful of communities, a small volunteer base - and let the numbers speak for themselves as we work to scale further across the Ashanti Region. If you want to see this work firsthand or add your name to the volunteer list, visit our Get Involved page.",
+        text: "Generic claims do not build trust. We would rather tell you exactly where we are today - one district, a handful of communities, a small crew - and let the numbers speak for themselves as we grow. If you want to see this work firsthand or partner with us, visit our Get Involved page.",
       },
     ],
-    sources: [
-      {
-        title: "Kwabre East Municipal Assembly",
-        url: "https://www.ghanadistricts.com/Home/District/125",
-        publisher: "Ghana Districts",
-      },
-      {
-        title: "Community-based solid waste management in Ghana",
-        url: "https://www.unep.org/regions/africa",
-        publisher: "UNEP Africa",
-      },
-    ],
+    sources: [],
   },
   {
     slug: "wastecure-expands-cleaning-services-ashanti-region",
@@ -469,8 +380,7 @@ export const ARTICLES: Article[] = [
     readTime: "3 min read",
     date: "2025-12-02",
     author: "WasteCure Team",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/22dd501aaa7d.jpg",
-    imageSource: "AmaGhanaonline.com",
+    photo: PHOTOS.cleaningCrew,
     body: [
       {
         text: "When we started WasteCure in 2021, our focus was narrow and deliberate: give the Kwabre East Municipality a responsible place to take plastic waste. Four years on, the needs we hear from schools, offices and residential communities have grown beyond collection alone.",
@@ -488,13 +398,7 @@ export const ARTICLES: Article[] = [
         text: "This expansion also reflects our broader goal: moving from a single-municipality service to a waste management partner across the Ashanti Region. If your school, office or estate needs waste collection, cleaning, or both, get in touch and we will design a plan that fits.",
       },
     ],
-    sources: [
-      {
-        title: "Ghana National Plastic Action Partnership",
-        url: "https://www.weforum.org/projects/global-plastic-action-partnership",
-        publisher: "World Economic Forum",
-      },
-    ],
+    sources: [],
   },
   {
     slug: "why-ghanaian-cities-keep-flooding-waste-connection",
@@ -505,8 +409,7 @@ export const ARTICLES: Article[] = [
     readTime: "5 min read",
     date: "2026-01-15",
     author: "WasteCure Team",
-    image: REAL_PHOTOS.skipLoading2,
-    imageSource: "WasteCure",
+    photo: PHOTOS.skipLoading,
     body: [
       {
         text: "Almost every rainy season, towns and cities across Ghana experience flash flooding - streets turned to rivers, homes and shops damaged, and in the worst cases, lives lost. Heavy rainfall is the trigger, but it is rarely the whole story. In most urban flooding events, blocked drains carrying solid waste are a major contributing factor.",
@@ -517,7 +420,7 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: "The cost is more than inconvenience",
-        text: "Flooding damages homes, destroys goods in markets, disrupts transport, and creates standing water that becomes a breeding ground for mosquitoes and waterborne disease. A World Bank assessment of environmental degradation in Ghana estimated that flooding and poor waste management together account for a significant share of the country's annual environmental and health-related economic losses.",
+        text: "Flooding damages homes, destroys goods in markets, disrupts transport, and creates standing water that becomes a breeding ground for mosquitoes and waterborne disease.",
       },
       {
         heading: "What actually reduces the risk",
@@ -530,19 +433,14 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "Ghana flood preparedness and response",
-        url: "https://nadmo.gov.gh/",
-        publisher: "National Disaster Management Organisation (NADMO), Ghana",
+        title: "Dumping refuse into drains driving floods in Accra - NADMO",
+        url: "https://www.citinewsroom.com/2026/05/dumping-refuse-into-drains-driving-floods-in-accra-nadmo/",
+        publisher: "Citi Newsroom",
       },
       {
-        title: "The cost of environmental degradation in Ghana",
-        url: "https://documents.worldbank.org/en/publication/documents-reports",
-        publisher: "World Bank",
-      },
-      {
-        title: "Urban flooding and solid waste management in West Africa",
-        url: "https://www.unep.org/regions/africa",
-        publisher: "UNEP Africa",
+        title: "Ashanti NADMO begins emergency drain works amid flood fears",
+        url: "https://asaaseradio.com/ashanti-nadmo-begins-emergency-drain-works-amid-flood-fears/",
+        publisher: "Asaase Radio",
       },
     ],
   },
@@ -555,15 +453,14 @@ export const ARTICLES: Article[] = [
     readTime: "4 min read",
     date: "2026-02-10",
     author: "WasteCure Team",
-    image: REAL_PHOTOS.cleaningCrew,
-    imageSource: "WasteCure",
+    photo: PHOTOS.broomHandover,
     body: [
       {
         text: "One of the most common questions we get from schools, offices and estate managers is simple: how often do we actually need cleaning? The honest answer is that it depends on foot traffic, building use, and what is at stake if cleanliness slips - but there are useful rules of thumb.",
       },
       {
         heading: "Daily: high-traffic and shared-surface areas",
-        text: "Classrooms, office floors, toilets, and reception areas that see continuous use should be cleaned daily. The World Health Organisation's guidance on hygiene in public and institutional settings emphasises that frequently touched surfaces - door handles, desks, toilet fittings - are the fastest routes for germs to spread, and daily cleaning materially reduces that risk, especially during school terms and flu seasons.",
+        text: "Classrooms, office floors, toilets, and reception areas that see continuous use should be cleaned daily. The World Health Organisation advises prioritising high-touch surfaces such as door handles, bathroom surfaces and taps when cleaning shared buildings, and the US CDC recommends cleaning such surfaces at least once a day.",
       },
       {
         heading: "Weekly: deeper cleans and less-trafficked spaces",
@@ -580,14 +477,14 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "Water, sanitation, hygiene and waste management for institutions",
-        url: "https://www.who.int/teams/environment-climate-change-and-health/water-sanitation-and-health/publications-and-tools",
-        publisher: "World Health Organisation (WHO)",
+        title: "Cleaning and disinfecting surfaces in non-health-care settings",
+        url: "https://www.who.int/news-room/q-a-detail/coronavirus-disease-covid-19-cleaning-and-disinfecting-surfaces-in-non-health-care-settings",
+        publisher: "World Health Organization",
       },
       {
-        title: "Cleaning and disinfecting public spaces",
-        url: "https://www.cdc.gov/hygiene/about/index.html",
-        publisher: "US Centers for Disease Control and Prevention (CDC)",
+        title: "When and how to clean and disinfect a facility",
+        url: "https://www.cdc.gov/hygiene/about/when-and-how-to-clean-and-disinfect-a-facility.html",
+        publisher: "US Centers for Disease Control and Prevention",
       },
     ],
   },
@@ -600,15 +497,14 @@ export const ARTICLES: Article[] = [
     readTime: "5 min read",
     date: "2026-03-05",
     author: "WasteCure Team",
-    image: REAL_PHOTOS.communityMeeting,
-    imageSource: "WasteCure",
+    photo: PHOTOS.crewBriefing,
     body: [
       {
         text: "Most organisations only think about waste management when something goes wrong - an overflowing bin area, a complaint from neighbours, or a surprise cost from an informal collector. A waste management consultancy exists to get ahead of that, by helping institutions design a waste system that actually fits how they operate.",
       },
       {
         heading: "What a waste audit actually involves",
-        text: "The starting point for most consultancy engagements is a waste audit: understanding what an organisation throws away, how much, and where it currently goes. This typically means observing bin areas over a period, categorising waste streams (general, recyclable, organic), and identifying where volumes could be reduced or diverted. The Ghana Environmental Protection Agency's guidance for institutions recommends this kind of baseline assessment before any new waste policy is introduced.",
+        text: "The starting point for most consultancy engagements is a waste audit: understanding what an organisation throws away, how much, and where it currently goes. This typically means observing bin areas over a period, categorising waste streams (general, recyclable, organic), and identifying where volumes could be reduced or diverted.",
       },
       {
         heading: "Signs your organisation could use one",
@@ -625,19 +521,9 @@ export const ARTICLES: Article[] = [
     ],
     sources: [
       {
-        title: "Guidelines for institutional waste management",
-        url: "https://www.epa.gov.gh/resources/publications",
-        publisher: "Environmental Protection Agency, Ghana",
-      },
-      {
-        title: "ISO 14001 Environmental Management Systems",
+        title: "ISO 14001 Environmental management systems",
         url: "https://www.iso.org/iso-14001-environmental-management.html",
         publisher: "International Organization for Standardization (ISO)",
-      },
-      {
-        title: "What a Waste 2.0: A Global Snapshot of Solid Waste Management to 2050",
-        url: "https://openknowledge.worldbank.org/handle/10986/2175",
-        publisher: "World Bank",
       },
     ],
   },

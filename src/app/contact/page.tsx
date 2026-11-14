@@ -38,7 +38,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { PageHeader } from "@/components/site/page-header";
-import { SITE, REAL_PHOTOS } from "@/lib/site-data";
+import { SITE } from "@/lib/site-data";
+import { PHOTOS } from "@/lib/photos";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Please enter your full name"),
@@ -180,9 +181,10 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        title="Contact Us"
-        subtitle="Request a pickup, ask about services, or partner with us. We respond within 1-2 business days."
-        image={REAL_PHOTOS.marketEngagement}
+        title="Contact us"
+        subtitle="Request a pickup, ask about a service, or talk to us about a partnership. We reply within one to two business days."
+        photo={PHOTOS.skipHeadPan}
+        focus="50% 45%"
       />
 
       <section className="overflow-hidden bg-background py-20 md:py-24">
@@ -190,8 +192,8 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Left: contact details + map */}
             <motion.div
-              initial={{ opacity: 0, x: -28 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               className="space-y-6"
@@ -408,8 +410,8 @@ export default function ContactPage() {
 
             {/* Right: enquiry form */}
             <motion.div
-              initial={{ opacity: 0, x: 28 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >

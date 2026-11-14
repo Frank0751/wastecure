@@ -13,12 +13,12 @@ const SECTIONS = [
   {
     icon: Database,
     title: "What we collect",
-    body: "When you submit a form (contact, pickup request, volunteer signup, or newsletter), we collect the information you provide: your name, phone number, email address, location, and your message. We also log basic chat messages sent to our AI assistant to improve our service.",
+    body: "When you submit a form (contact, pickup request, or partnership enquiry), we collect the information you provide: your name, phone number, email address, location, and your message. We also log basic chat messages sent to our AI assistant to improve our service.",
   },
   {
     icon: Eye,
     title: "How we use your data",
-    body: "We use your information solely to respond to your enquiries, schedule pickups, coordinate volunteer activities, and send you updates if you subscribe to our newsletter. We do not sell, rent, or trade your personal data to third parties.",
+    body: "We use your information solely to respond to your enquiries, schedule pickups and follow up on partnership enquiries. We do not sell, rent, or trade your personal data to third parties.",
   },
   {
     icon: Database,
@@ -28,7 +28,7 @@ const SECTIONS = [
   {
     icon: Cookie,
     title: "Cookies",
-    body: "This website uses essential cookies and local storage to remember your language and theme preferences, and to save your cookie consent choice. We do not use advertising or tracking cookies. Analytics, if added in future, will be privacy-friendly and opt-in.",
+    body: "This website does not use advertising or tracking cookies. It stores your light or dark theme choice in your browser, and staff who sign in to the dashboard receive a session cookie.",
   },
   {
     icon: Mail,
@@ -49,7 +49,7 @@ export function PrivacyPolicyDialog({
       <DialogContent className="max-h-[92vh] overflow-hidden p-0 sm:max-w-2xl">
         <div className="flex h-[80vh] flex-col">
           {/* Header */}
-          <div className="relative flex items-center justify-between gap-3 border-b border-border bg-gradient-to-r from-forest-700 to-forest-900 px-6 py-5 text-white">
+          <div className="relative flex items-center justify-between gap-3 border-b border-border bg-forest-900 px-6 py-5 text-white">
             <div className="flex items-center gap-3">
               <Shield className="size-5 text-leaf-400" />
               <div>

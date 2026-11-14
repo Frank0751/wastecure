@@ -1,12 +1,12 @@
 import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
 import { GalleryGrid } from "@/components/site/gallery-grid";
-import { REAL_PHOTOS } from "@/lib/site-data";
+import { PHOTOS } from "@/lib/photos";
 
 export const metadata = {
   title: "Gallery",
   description:
-    "Photos from WasteCure's waste collection rounds, cleaning jobs and community work across Ghana.",
+    "Photos from WasteCure's collection rounds, clean-ups and crew meetings.",
 };
 
 export default function GalleryPage() {
@@ -14,8 +14,8 @@ export default function GalleryPage() {
     <>
       <PageHeader
         title="Gallery"
-        subtitle="Real photos from our collection rounds, cleaning jobs and community work across Ghana."
-        image={REAL_PHOTOS.groupPhoto1}
+        subtitle="Photos from our collection rounds, clean-ups and crew meetings."
+        photo={PHOTOS.cleaningCrew}
       />
 
       <section className="bg-background py-20 md:py-24">
@@ -25,12 +25,8 @@ export default function GalleryPage() {
       </section>
 
       <CTASection
-        title="Want to see WasteCure in your community?"
+        title="Want this in your community?"
         subtitle="Request a pickup, ask about cleaning services, or partner with us."
-        primaryLabel="Contact us"
-        primaryHref="/contact"
-        secondaryLabel="Get involved"
-        secondaryHref="/get-involved"
       />
     </>
   );

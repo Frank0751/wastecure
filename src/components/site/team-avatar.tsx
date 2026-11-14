@@ -17,14 +17,14 @@ export function TeamAvatar({ name, image }: { name: string; image?: string }) {
 
   if (!image || failed) {
     return (
-      <div className="flex size-16 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary">
+      <div className="flex size-20 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary">
         {initials(name)}
       </div>
     );
   }
 
   return (
-    <div className="size-16 overflow-hidden rounded-full ring-2 ring-primary/15">
+    <div className="size-20 overflow-hidden rounded-full ring-2 ring-primary/15">
       <img
         src={image}
         alt={name}

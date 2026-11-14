@@ -126,7 +126,7 @@ export function PickupWizard({
       });
     } catch {
       toast.error("Could not submit request", {
-        description: "Please try again or call us on +233 20 397 0216.",
+        description: "Please try again or call us.",
       });
     } finally {
       setSubmitting(false);
@@ -137,8 +137,8 @@ export function PickupWizard({
     <Dialog open={open} onOpenChange={close}>
       <DialogContent className="max-h-[92vh] overflow-y-auto p-0 sm:max-w-[560px]">
         <div className="flex flex-col">
-          {/* Header with gradient */}
-          <div className="bg-gradient-to-br from-forest-700 to-forest-900 p-6 text-white">
+          {/* Header */}
+          <div className="bg-forest-900 p-6 text-white">
             <div className="flex items-center gap-3">
               <Truck className="size-5 text-leaf-400" />
               <div>

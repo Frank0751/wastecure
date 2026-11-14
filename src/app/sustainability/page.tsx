@@ -4,7 +4,8 @@ import { PageHeader } from "@/components/site/page-header";
 import { CTASection } from "@/components/site/cta-section";
 import { Reveal } from "@/components/site/reveal";
 import { ImpactStats } from "@/components/site/impact-stats";
-import { REAL_PHOTOS } from "@/lib/site-data";
+import { PHOTOS } from "@/lib/photos";
+import { Photo } from "@/components/site/photo";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
@@ -101,68 +102,36 @@ export default function SustainabilityPage() {
     <>
       <PageHeader
         title="Sustainability"
-        subtitle="Plastic waste is one of the most visible environmental challenges in Ghana. WasteCure exists to change that, by reducing plastic at source, promoting recycling and keeping plastic out of landfills."
-        image={REAL_PHOTOS.skipLoading1}
+        subtitle="Waste that is collected and sorted stays out of drains, waterways and open fires."
+        photo={PHOTOS.skipLoading}
       />
 
-      {/* Environmental commitment section */}
-      <section className="relative bg-background py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-50" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <Reveal x={-30}>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
-                Our environmental commitment
-              </h2>
-              <div className="mt-6 space-y-4 text-base text-muted-foreground leading-relaxed">
-                <p>
-                  Plastic waste clogs drains, pollutes waterways and chokes
-                  farmland across Ghana. Every kilogram of plastic we collect is
-                  a kilogram kept out of the environment.
-                </p>
-                <p>
-                  We work with households, businesses and institutions to make
-                  responsible disposal easy and accessible. Sorted plastic is
-                  baled and channelled to recycling off-takers - closing the loop
-                  and supporting Ghana&apos;s growing circular economy.
-                </p>
-                <p>
-                  Beyond collection, we run school programmes and community
-                  clean-ups to build long-term awareness and behaviour change.
-                  Sustainability is not just a service - it is the core of
-                  everything we do.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal x={30}>
-              <div className="relative">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
-                  <img
-                    src={REAL_PHOTOS.wheelbarrowCollection}
-                    alt="WasteCure crew collecting waste for sorting"
-                    className="size-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-900/40 to-transparent" />
-                </div>
-                <div className="absolute -bottom-5 left-6 right-6 rounded-xl border border-border bg-card p-4 shadow-lg">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <div className="text-3xl font-bold text-primary">144+</div>
-                      <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                        Tricycle loads collected
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-3xl font-bold text-leaf-600">4</div>
-                      <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                        Service lines
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+      <section className="bg-background py-20 md:py-28">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl">
+              Our environmental commitment
+            </h2>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p>
+                Plastic waste clogs drains, pollutes waterways and ends up on
+                farmland. Every load we collect is a load kept out of the
+                environment.
+              </p>
+              <p>
+                We work with households, businesses and institutions to make
+                responsible disposal easy. Recyclable plastic is sorted and
+                passed on to recyclers; the rest goes to proper disposal.
+              </p>
+            </div>
+          </div>
+          <div className="aspect-[4/3] overflow-hidden rounded-xl bg-muted">
+            <Photo
+              id={PHOTOS.wheelbarrow}
+              alt="WasteCure crew filling a wheelbarrow with collected waste"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="size-full object-cover"
+            />
           </div>
         </div>
       </section>

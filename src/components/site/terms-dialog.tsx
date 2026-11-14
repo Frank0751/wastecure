@@ -20,7 +20,7 @@ const SECTIONS = [
   },
   {
     title: "User responsibilities",
-    body: "You agree to provide accurate information when submitting forms (contact, pickup requests, volunteer signups). You are responsible for ensuring waste is accessible for collection at the agreed time, and for sorting it as reasonably requested by our team.",
+    body: "You agree to provide accurate information when submitting forms (contact, pickup requests, partnership enquiries). You are responsible for ensuring waste is accessible for collection at the agreed time, and for sorting it as reasonably requested by our team.",
   },
   {
     title: "Intellectual property",
@@ -56,7 +56,7 @@ export function TermsDialog({
       <DialogContent className="max-h-[92vh] overflow-hidden p-0 sm:max-w-2xl">
         <div className="flex h-[80vh] flex-col">
           {/* Header */}
-          <div className="relative flex items-center justify-between gap-3 border-b border-border bg-gradient-to-r from-forest-700 to-forest-900 px-6 py-5 text-white">
+          <div className="relative flex items-center justify-between gap-3 border-b border-border bg-forest-900 px-6 py-5 text-white">
             <div className="flex items-center gap-3">
               <Scale className="size-5 text-leaf-400" />
               <div>

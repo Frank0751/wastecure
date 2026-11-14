@@ -81,7 +81,7 @@ export function Header() {
 
         {/* Desktop nav with dropdowns */}
         <nav
-          className="hidden 2xl:flex items-center gap-0.5"
+          className="hidden xl:flex items-center gap-0.5"
           aria-label="Primary navigation"
         >
           {NAV_STRUCTURE.map((item) => (
@@ -123,7 +123,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="2xl:hidden"
+                className="xl:hidden"
                 aria-label="Open menu"
               >
                 <Menu className="size-5" />
