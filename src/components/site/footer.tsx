@@ -106,6 +106,16 @@ export function Footer() {
         <div className="flex flex-col gap-3 border-t border-white/10 py-6 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             &copy; {new Date().getFullYear()} {SITE.legalName}
+            <span className="mx-2 text-white/30">·</span>
+            Site by{" "}
+            <a
+              href="https://koombei.com"
+              target="_blank"
+              rel="noopener"
+              className="font-medium text-white/80 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+            >
+              KoomBei
+            </a>
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <button onClick={openPrivacy} className="transition-colors hover:text-white">
