@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site-data";
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-end overflow-hidden md:min-h-[calc(100svh-5rem)]">
+    <section className="relative isolate flex min-h-[calc(100svh-4rem)] items-center overflow-hidden md:min-h-[calc(100svh-5rem)]">
       <Photo
         id={PHOTOS.cleaningCrew}
         alt="Six WasteCure crew members in orange vests, holding brooms, at a market site"
@@ -16,10 +16,10 @@ export function Hero() {
         focus="50% 35%"
         className="absolute inset-0 -z-20 size-full object-cover"
       />
-      {/* Darken only where the text sits, so the crew stays visible. */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest-900 via-forest-900/70 to-forest-900/10" />
+      {/* Even overlay: the text is centred, so it sits over the photo itself. */}
+      <div className="absolute inset-0 -z-10 bg-forest-900/70" />
 
-      <div className="mx-auto w-full max-w-7xl px-4 pb-14 pt-32 sm:px-6 md:pb-20 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-8">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-leaf-400">
           Kumasi, Ghana · Since {SITE.founded}
         </p>
@@ -31,7 +31,7 @@ export function Hero() {
           advanced waste solutions for sustainable waste management, building
           a cleaner, greener environment one community at a time.
         </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild size="lg">
             <Link href="/contact">
               Request a service
